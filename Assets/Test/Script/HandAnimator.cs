@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
-
+using System.Collections;
+using System.Collections.Generic;
 namespace MediaPipe.HandPose {
 
 public sealed class HandAnimator : MonoBehaviour
@@ -18,7 +19,8 @@ public sealed class HandAnimator : MonoBehaviour
     [SerializeField] Material _boneMaterial = null;
     [Space]
     [SerializeField] RawImage _monitorUI = null;
-        [SerializeField] private Image target;//=new Image[21];
+        //   [SerializeField] private Image target;//=new Image[21];
+        [SerializeField] private List<Image> target = new List<Image>();
 
         #endregion
 
@@ -78,14 +80,14 @@ public sealed class HandAnimator : MonoBehaviour
                 //Debug.Log("_pipeline:" + _pipeline);
                 //Debug.Log("HandPipeline.KeyPointCount:" + HandPipeline.KeyPointCount);
                 Graphics.DrawMesh(_jointMesh, xform, _jointMaterial, layer);
-               if(i==0) {
-                    target.rectTransform.position = new Vector3(150, 150, 0);
-                    target.rectTransform.position = new Vector3((float)_pipeline.GetKeyPoint(i).x * 500 + 533, (float)_pipeline.GetKeyPoint(i).y * 500 + 300, 0);
-                    target.rectTransform.position = (_pipeline.GetKeyPoint(i));
+              
+                    target[i].rectTransform.position = new Vector3(150, 150, 0);
+                    target[i].rectTransform.position = new Vector3((float)_pipeline.GetKeyPoint(i).x * 500 + 533, (float)_pipeline.GetKeyPoint(i).y * 500 + 300, 0);
+                    target[i].rectTransform.position = (_pipeline.GetKeyPoint(i));
 
                     Debug.Log("_pipeline.GetKeyPoint(i):" + _pipeline.GetKeyPoint(i));//RectTransformUtility.WorldToScreenPoint(Camera.main, target.position)
-                    Debug.Log(" target.rectTransform.position:" + target.rectTransform.position);
-                }
+                    Debug.Log(" target.rectTransform.position:" + target[i].rectTransform.position);
+                
 
             }
 
