@@ -18,12 +18,14 @@ public sealed class HandAnimator : MonoBehaviour
     [SerializeField] Material _boneMaterial = null;
     [Space]
     [SerializeField] RawImage _monitorUI = null;
+        [SerializeField] private Image target;//=new Image[21];
 
-    #endregion
+        #endregion
 
-    #region Private members
+        #region Private members
 
-    HandPipeline _pipeline;
+        HandPipeline _pipeline;
+
 
     static readonly (int, int)[] BonePairs =
     {
@@ -70,13 +72,25 @@ public sealed class HandAnimator : MonoBehaviour
 
         // Joint balls
         for (var i = 0; i < HandPipeline.KeyPointCount; i++)
-        {
-            var xform = CalculateJointXform(_pipeline.GetKeyPoint(i));
-            Graphics.DrawMesh(_jointMesh, xform, _jointMaterial, layer);
-        }
+            {
+                var xform = CalculateJointXform(_pipeline.GetKeyPoint(i));
+                // Debug.Log("xform:" + xform);
+                //Debug.Log("_pipeline:" + _pipeline);
+                //Debug.Log("HandPipeline.KeyPointCount:" + HandPipeline.KeyPointCount);
+                Graphics.DrawMesh(_jointMesh, xform, _jointMaterial, layer);
+               if(i==0) {
+                    target.rectTransform.position = new Vector3(150, 150, 0);
+                    target.rectTransform.position = new Vector3((float)_pipeline.GetKeyPoint(i).x * 500 + 533, (float)_pipeline.GetKeyPoint(i).y * 500 + 300, 0);
+                    target.rectTransform.position = (_pipeline.GetKeyPoint(i));
 
-        // Bones
-        foreach (var pair in BonePairs)
+                    Debug.Log("_pipeline.GetKeyPoint(i):" + _pipeline.GetKeyPoint(i));//RectTransformUtility.WorldToScreenPoint(Camera.main, target.position)
+                    Debug.Log(" target.rectTransform.position:" + target.rectTransform.position);
+                }
+
+            }
+
+            // Bones
+            foreach (var pair in BonePairs)
         {
             var p1 = _pipeline.GetKeyPoint(pair.Item1);
             var p2 = _pipeline.GetKeyPoint(pair.Item2);

@@ -62,7 +62,8 @@ public sealed class HandVisualizer : MonoBehaviour
     {
         // Key point circles
         _material.keys.SetPass(0);
-        Graphics.DrawProceduralNow(MeshTopology.Triangles, 96, 21);
+            Debug.Log("_material.keys:" + _material.keys);
+            Graphics.DrawProceduralNow(MeshTopology.Triangles, 96, 21);
 
         // Skeleton lines
         _material.keys.SetPass(1);
