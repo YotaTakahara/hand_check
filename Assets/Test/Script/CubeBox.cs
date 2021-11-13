@@ -7,13 +7,20 @@ public class CubeBox : MonoBehaviour
 {
     [SerializeField] private GameObject animatorVir;
     [SerializeField] private HandAnimator handAnimator;
-    [SerializeField] private GameObject target;
+    public GameObject target;
+    [SerializeField] private Canvas canvas;
     [SerializeField] private EnemyGenerator enemyGenerator;
     // Start is called before the first frame update
     void Start()
     {
+
+        GameObject canvasObj=GameObject.Find("Canvas");
+        GameObject eneObj=GameObject.Find("EnemyGenerator");
+        canvas=canvasObj.GetComponent<Canvas>();
         animatorVir=GameObject.Find("AnimatorVir");
         handAnimator=animatorVir.GetComponent<HandAnimator>();
+        enemyGenerator=eneObj.GetComponent<EnemyGenerator>();
+        
 
         
     }
