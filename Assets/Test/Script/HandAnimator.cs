@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Barracuda;
 namespace MediaPipe.HandPose {
 
 public sealed class HandAnimator : MonoBehaviour
@@ -21,6 +22,8 @@ public sealed class HandAnimator : MonoBehaviour
     [SerializeField] RawImage _monitorUI = null;
         //   [SerializeField] private Image target;//=new Image[21];
         [SerializeField] private List<Image> target = new List<Image>();
+        [SerializeField] private List<Text> targetText = new List<Text>();
+
 
         #endregion
 
@@ -54,26 +57,50 @@ public sealed class HandAnimator : MonoBehaviour
         return Matrix4x4.TRS(center, rotation, scale);
     }
 
-    #endregion
+        #endregion
 
-    #region MonoBehaviour implementation
+        #region MonoBehaviour implementation
 
-    void Start()
-      => _pipeline = new HandPipeline(_resources);
+        void Start()
+        {
+         _pipeline = new HandPipeline(_resources);
+            for (int i = 0; i < target.Count;i++)
+            {
+            //    Debug.Log("target[i].GetComponent<Text>():" + target[i].GetComponentInChildren<Text>());
+                // Text tmp = target[i].GetComponentInChildren<Text>();
+                // targetText.Add(tmp);
+            }
+            //  Debug.Log("")
+        }
 
-    void OnDestroy()
+        void OnDestroy()
       => _pipeline.Dispose();
+
+
+    public int tmp=0;
+    public int Pose(){
+        if(tmp>50){
+            Debug.Log("ぐー!!!!!!!!!!!!!!!!!!!!");
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
 
     void LateUpdate()
     {
+        int checkCount=0;
         // Feed the input image to the Hand pose pipeline.
         _pipeline.UseAsyncReadback = _useAsyncReadback;
         _pipeline.ProcessImage(_webcam.Texture);
 
         var layer = gameObject.layer;
+          //  int check = 0;
+            
 
-        // Joint balls
-        for (var i = 0; i < HandPipeline.KeyPointCount; i++)
+            // Joint balls
+            for (var i = 0; i < HandPipeline.KeyPointCount; i++)
             {
                 var xform = CalculateJointXform(_pipeline.GetKeyPoint(i));
                 // Debug.Log("xform:" + xform);
@@ -84,12 +111,25 @@ public sealed class HandAnimator : MonoBehaviour
                     target[i].rectTransform.position = new Vector3(150, 150, 0);
                     target[i].rectTransform.position = new Vector3((float)_pipeline.GetKeyPoint(i).x * 500 + 533, (float)_pipeline.GetKeyPoint(i).y * 500 + 300, 0);
                     target[i].rectTransform.position = (_pipeline.GetKeyPoint(i));
-
-                    Debug.Log("_pipeline.GetKeyPoint(i):" + _pipeline.GetKeyPoint(i));//RectTransformUtility.WorldToScreenPoint(Camera.main, target.position)
-                    Debug.Log(" target.rectTransform.position:" + target[i].rectTransform.position);
+                    target[i].GetComponentInChildren<Text>().text="" + i + "";
+                 //  targetText[0].text =""+i+"";
+               // Debug.Log("_pipeline.GetKeyPoint(i):" + _pipeline.GetKeyPoint(i));//RectTransformUtility.WorldToScreenPoint(Camera.main, target.position)
+          //          Debug.Log(" target.rectTransform.position:" + target[i].rectTransform.position);
+              if(_pipeline.GetKeyPoint(i).z<0){
+                  checkCount+=1;
+              }
+                    
                 
 
             }
+            if(15<checkCount){
+                this.tmp+=1;
+
+            }else{
+                this.tmp=0;
+            }
+
+           int tmp=Pose();
 
             // Bones
             foreach (var pair in BonePairs)

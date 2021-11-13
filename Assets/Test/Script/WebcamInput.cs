@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace MediaPipe.HandPose {
 
-public sealed class WebcamInput : MonoBehaviour
+public  class WebcamInput : MonoBehaviour
 {
     #region Editable attributes
 
@@ -58,6 +58,21 @@ public sealed class WebcamInput : MonoBehaviour
         var offset = new Vector2((1 - gap) / 2, vflip ? 1 : 0);
 
         Graphics.Blit(_webcam, _buffer, scale, offset);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
     }
 
     #endregion
