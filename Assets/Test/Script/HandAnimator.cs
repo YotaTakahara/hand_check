@@ -77,10 +77,30 @@ public sealed class HandAnimator : MonoBehaviour
       => _pipeline.Dispose();
 
 
-    public int tmp=0;
+    public int tmpGuu=0;
     public int Pose(){
-        if(tmp>50){
+        if(tmpGuu>50){
             Debug.Log("ぐー!!!!!!!!!!!!!!!!!!!!");
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+    public int tmpHitosashi=0;
+    public int PoseHitosashi(){
+     //   Debug.Log("tmpHitosashi:"+tmpHitosashi);
+        if(3<=tmpHitosashi){
+            Debug.Log("人差し指!!!!!!!!!!!!!!!!!!!!");
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+    public int tmpHutasashi=0;
+    public int PoseHutasashi(){
+        Debug.Log("tmpHutasashi:"+tmpHutasashi);
+        if(3<=tmpHutasashi){
+            Debug.Log("ピース!!!!!!!!!!!!!!!!!!!!");
             return 1;
         }else{
             return 0;
@@ -88,9 +108,12 @@ public sealed class HandAnimator : MonoBehaviour
     }
 
 
+
     void LateUpdate()
     {
         int checkCount=0;
+        int  checkCountHitosashi=0;
+         int  checkCountHutasashi=0;
         // Feed the input image to the Hand pose pipeline.
         _pipeline.UseAsyncReadback = _useAsyncReadback;
         _pipeline.ProcessImage(_webcam.Texture);
@@ -118,18 +141,65 @@ public sealed class HandAnimator : MonoBehaviour
               if(_pipeline.GetKeyPoint(i).z<0){
                   checkCount+=1;
               }
-                    
-                
-
-            }
-            if(15<checkCount){
-                this.tmp+=1;
+              if(i==6||i==7||i==8){
+                  if(0<=_pipeline.GetKeyPoint(i).z) {
+                      checkCountHitosashi+=1;
+                  }
+              }
+              else{
+                  if(_pipeline.GetKeyPoint(i).z<0) {
+                      checkCountHitosashi+=1;
+                  }
+              }
+              if(18<checkCountHitosashi){
+                this.tmpHitosashi+=1;
+                Debug.Log("一刺し");
 
             }else{
-                this.tmp=0;
+                this.tmpHitosashi=0;
             }
 
-           int tmp=Pose();
+
+
+            if(i==6||i==7||i==8||i==10||i==11||i==12){
+                  if(0<=_pipeline.GetKeyPoint(i).z) {
+                      checkCountHutasashi+=1;
+                  }
+              }
+              else{
+                  if(_pipeline.GetKeyPoint(i).z<0) {
+                      checkCountHutasashi+=1;
+                  }
+              }
+              if(15<checkCountHutasashi){
+                this.tmpHutasashi+=1;
+                Debug.Log("2刺し");
+
+            }else{
+                this.tmpHutasashi=0;
+            }
+
+
+
+
+
+            }
+
+
+
+
+              
+            if(15<checkCount){
+                this.tmpGuu+=1;
+
+            }else{
+                this.tmpGuu=0;
+            }
+
+           int tmp0=Pose();
+
+           int tmp1=PoseHitosashi();
+            int tmp2=PoseHutasashi();
 
             // Bones
             foreach (var pair in BonePairs)

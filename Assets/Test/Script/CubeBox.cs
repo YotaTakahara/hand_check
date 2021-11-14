@@ -31,7 +31,7 @@ public class CubeBox : MonoBehaviour
         
     }
      void OnTriggerEnter(Collider other) {
-        Debug.Log("攻撃判定");
+      //  Debug.Log("攻撃判定");
         if(handAnimator.Pose()==1){
             Destroy(target.gameObject);
             Destroy(this.gameObject);
