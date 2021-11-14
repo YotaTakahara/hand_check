@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Unity.Barracuda;
 namespace MediaPipe.HandPose {
 
-public sealed class HandAnimator : MonoBehaviour
+public class HandAnimator : MonoBehaviour
 {
     #region Editable attributes
 
@@ -21,8 +21,11 @@ public sealed class HandAnimator : MonoBehaviour
     [Space]
     [SerializeField] RawImage _monitorUI = null;
         //   [SerializeField] private Image target;//=new Image[21];
-        [SerializeField] private List<Image> target = new List<Image>();
-        [SerializeField] private List<Text> targetText = new List<Text>();
+    [SerializeField] private List<Image> target = new List<Image>();
+    [SerializeField] private List<Text> targetText = new List<Text>();
+   [SerializeField] private CreateObject creObj;
+     public GameObject tmp;
+  
 
 
         #endregion
@@ -30,6 +33,7 @@ public sealed class HandAnimator : MonoBehaviour
         #region Private members
 
         HandPipeline _pipeline;
+         
 
 
     static readonly (int, int)[] BonePairs =
@@ -60,6 +64,7 @@ public sealed class HandAnimator : MonoBehaviour
         #endregion
 
         #region MonoBehaviour implementation
+      //  [SerializeField] private CreateObject object;
 
         void Start()
         {
@@ -71,6 +76,8 @@ public sealed class HandAnimator : MonoBehaviour
                 // targetText.Add(tmp);
             }
             //  Debug.Log("")
+            GameObject tmpCreate=GameObject.Find("CreateObject");
+            creObj=tmpCreate.GetComponent<CreateObject>();
         }
 
         void OnDestroy()
@@ -87,9 +94,13 @@ public sealed class HandAnimator : MonoBehaviour
         }
     }
     public int tmpHitosashi=0;
-    public int PoseHitosashi(){
+    public int PoseHitosashi(Vector3 place){
      //   Debug.Log("tmpHitosashi:"+tmpHitosashi);
         if(3<=tmpHitosashi){
+           // creObj.InstanceObject(place);
+           place.z=-0.5f;
+           Instantiate(tmp,place,Quaternion.identity);
+           Debug.Log("place:"+place);
             Debug.Log("人差し指!!!!!!!!!!!!!!!!!!!!");
             return 1;
         }else{
@@ -98,7 +109,7 @@ public sealed class HandAnimator : MonoBehaviour
     }
     public int tmpHutasashi=0;
     public int PoseHutasashi(){
-        Debug.Log("tmpHutasashi:"+tmpHutasashi);
+     //   Debug.Log("tmpHutasashi:"+tmpHutasashi);
         if(3<=tmpHutasashi){
             Debug.Log("ピース!!!!!!!!!!!!!!!!!!!!");
             return 1;
@@ -134,7 +145,10 @@ public sealed class HandAnimator : MonoBehaviour
                     target[i].rectTransform.position = new Vector3(150, 150, 0);
                     target[i].rectTransform.position = new Vector3((float)_pipeline.GetKeyPoint(i).x * 500 + 533, (float)_pipeline.GetKeyPoint(i).y * 500 + 300, 0);
                     target[i].rectTransform.position = (_pipeline.GetKeyPoint(i));
-                    target[i].GetComponentInChildren<Text>().text="" + i + "";
+                  //  Debug.Log("target[i].rectTransform.position:"+target[i].rectTransform.position);
+                   // Debug.Log("target[i].position:"+target[i].rectTransform.localPosition);
+                   // Debug.Log("target.position:"+target[i].transformposition)
+                   // target[i].GetComponentInChildren<Text>().text="" + i + "";
                  //  targetText[0].text =""+i+"";
                // Debug.Log("_pipeline.GetKeyPoint(i):" + _pipeline.GetKeyPoint(i));//RectTransformUtility.WorldToScreenPoint(Camera.main, target.position)
           //          Debug.Log(" target.rectTransform.position:" + target[i].rectTransform.position);
@@ -151,7 +165,7 @@ public sealed class HandAnimator : MonoBehaviour
                       checkCountHitosashi+=1;
                   }
               }
-              if(18<checkCountHitosashi){
+              if(15<checkCountHitosashi){
                 this.tmpHitosashi+=1;
                 Debug.Log("一刺し");
 
@@ -198,7 +212,7 @@ public sealed class HandAnimator : MonoBehaviour
 
            int tmp0=Pose();
 
-           int tmp1=PoseHitosashi();
+           int tmp1=PoseHitosashi(_pipeline.GetKeyPoint(8));
             int tmp2=PoseHutasashi();
 
             // Bones
