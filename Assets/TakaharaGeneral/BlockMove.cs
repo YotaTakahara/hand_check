@@ -18,7 +18,7 @@ public class BlockMove : MonoBehaviour
     void OnCollisionEnter(Collision collision){
         Debug.Log("itaaai");
         if(collision.gameObject.tag=="Monster"){
-        GetComponent<Renderer>().material.color=Color.red;
+        GetComponent<Renderer>().material.color=Color.green;
         }
     }
 }

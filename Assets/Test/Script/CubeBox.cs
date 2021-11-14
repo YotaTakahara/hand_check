@@ -35,7 +35,7 @@ public class CubeBox : MonoBehaviour
     {
         
     }
-     void OnTriggerStay(Collider other) {
+     void OnTriggerEnter(Collider other) {
         
         //Debug.Log("攻撃判定");
         if(handAnimator.Pose()==1&&once==0){

@@ -95,8 +95,8 @@ public class HandAnimator : MonoBehaviour
     }
     public int tmpHitosashi=0;
     public int PoseHitosashi(Vector3 place){
-     //   Debug.Log("tmpHitosashi:"+tmpHitosashi);
-        if(3<=tmpHitosashi){
+      Debug.Log("tmpHitosashi:"+tmpHitosashi);
+        if(4<=tmpHitosashi){
            // creObj.InstanceObject(place);
            place.z=-0.5f;
            Instantiate(tmp,place,Quaternion.identity);
@@ -157,7 +157,7 @@ public class HandAnimator : MonoBehaviour
               }
               if(i==6||i==7||i==8){
                   if(0<=_pipeline.GetKeyPoint(i).z) {
-                      checkCountHitosashi+=1;
+                      checkCountHitosashi+=2;
                   }
               }
               else{
@@ -165,7 +165,7 @@ public class HandAnimator : MonoBehaviour
                       checkCountHitosashi+=1;
                   }
               }
-              if(15<checkCountHitosashi){
+              if(18<checkCountHitosashi){
                 this.tmpHitosashi+=1;
                 Debug.Log("一刺し");
 
@@ -210,10 +210,19 @@ public class HandAnimator : MonoBehaviour
                 this.tmpGuu=0;
             }
 
-           int tmp0=Pose();
+           
+           int tmp2=PoseHutasashi();
+           int tmp1=0;
+           if (tmp2==0){
+                tmp1=PoseHitosashi(_pipeline.GetKeyPoint(8));
+           }
+          // int tmp1=PoseHitosashi(_pipeline.GetKeyPoint(8));
+           if(tmp1==0&&tmp2==0){
+                int tmp0=Pose();
 
-           int tmp1=PoseHitosashi(_pipeline.GetKeyPoint(8));
-            int tmp2=PoseHutasashi();
+           }
+          
+            
 
             // Bones
             foreach (var pair in BonePairs)
