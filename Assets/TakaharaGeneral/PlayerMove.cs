@@ -6,7 +6,7 @@ public class PlayerMove : MonoBehaviour
 {
     [SerializeField] private GameObject goal;
     [SerializeField] private Vector3 targetPosition;
-    [SerializeField] private float circleDistance=0.7f;
+    [SerializeField] private float circleDistance=0.3f;
     public float speed=0.1f;
     public Vector3 firstPosition;
     // Start is called before the first frame update
@@ -24,6 +24,7 @@ public class PlayerMove : MonoBehaviour
         float tmpDistance=Vector3.Magnitude(targetPosition-transform.position);
         if(tmpDistance<circleDistance){
             targetPosition=SelectWhere();
+            Debug.Log("目標位置の変更が起こりました:"+targetPosition);
         }
         Quaternion targetRotation = Quaternion.LookRotation(targetPosition - transform.position);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime);

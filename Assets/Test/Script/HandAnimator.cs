@@ -23,8 +23,10 @@ public class HandAnimator : MonoBehaviour
         //   [SerializeField] private Image target;//=new Image[21];
     [SerializeField] private List<Image> target = new List<Image>();
     [SerializeField] private List<Text> targetText = new List<Text>();
-   [SerializeField] private CreateObject creObj;
-     public GameObject tmp;
+    //[SerializeField] private CreateObject creObj;
+    [SerializeField] private GameController gameController;
+   
+    // public GameObject tmp;
   
 
 
@@ -76,8 +78,10 @@ public class HandAnimator : MonoBehaviour
                 // targetText.Add(tmp);
             }
             //  Debug.Log("")
-            GameObject tmpCreate=GameObject.Find("CreateObject");
-            creObj=tmpCreate.GetComponent<CreateObject>();
+            // GameObject tmpCreate=GameObject.Find("CreateObject");
+            // creObj=tmpCreate.GetComponent<CreateObject>();
+            GameObject tmpCon=GameObject.Find("GameController");
+            gameController=tmpCon.GetComponent<GameController>();
         }
 
         void OnDestroy()
@@ -87,6 +91,7 @@ public class HandAnimator : MonoBehaviour
     public int tmpGuu=0;
     public int Pose(){
         if(tmpGuu>50){
+            
             Debug.Log("ぐー!!!!!!!!!!!!!!!!!!!!");
             return 1;
         }else{
@@ -98,8 +103,9 @@ public class HandAnimator : MonoBehaviour
     //  Debug.Log("tmpHitosashi:"+tmpHitosashi);
         if(4<=tmpHitosashi){
            // creObj.InstanceObject(place);
-           place.z=-0.5f;
-           Instantiate(tmp,place,Quaternion.identity);
+         //  place.z=-0.5f;
+          // Instantiate(tmp,place,Quaternion.identity);
+          gameController.CreateBlock(place);
            Debug.Log("place:"+place);
             Debug.Log("人差し指!!!!!!!!!!!!!!!!!!!!");
             return 1;

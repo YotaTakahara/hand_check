@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private Text text;
     [SerializeField] private GameObject player;
     [SerializeField] private PlayerMove playerMove;
+    [SerializeField] private GameObject block;
     public int sceneState=0;
     public int score=0;
 
@@ -42,11 +43,16 @@ public class GameController : MonoBehaviour
         ScoreScene();
 
     }
+    public void CreateBlock(Vector3 place){
+         place.z=-0.5f;
+         Instantiate(block,place,Quaternion.identity);
+    }
+   
 
     public void ScoreScene(){
         if(sceneState==1){
             Instantiate(wallList[1],transform.position,Quaternion.identity);
-            score=eneList.Count;
+            score=score+eneList.Count;
             
         }
 

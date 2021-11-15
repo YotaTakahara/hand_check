@@ -451,7 +451,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8535265655307596135, guid: 380e869112d5086468a3a3992e91109d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.53
+      value: -0.65
       objectReference: {fileID: 0}
     - target: {fileID: 8535265655307596135, guid: 380e869112d5086468a3a3992e91109d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -682,6 +682,7 @@ MonoBehaviour:
   text: {fileID: 887378865}
   player: {fileID: 0}
   playerMove: {fileID: 0}
+  block: {fileID: 4692616725361406936, guid: cd76338108250c54ea7ebde9b4eb49d8, type: 3}
   sceneState: 0
   score: 0
 --- !u!4 &152957072
@@ -1443,8 +1444,7 @@ MonoBehaviour:
   - {fileID: 1906801437}
   targetText:
   - {fileID: 0}
-  creObj: {fileID: 0}
-  tmp: {fileID: 4692616725361406936, guid: cd76338108250c54ea7ebde9b4eb49d8, type: 3}
+  gameController: {fileID: 0}
   tmpGuu: 0
   tmpHitosashi: 0
   tmpHutasashi: 0
@@ -2487,11 +2487,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8535265655307596135, guid: 380e869112d5086468a3a3992e91109d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.07
+      value: -0.31
       objectReference: {fileID: 0}
     - target: {fileID: 8535265655307596135, guid: 380e869112d5086468a3a3992e91109d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.53
+      value: -0.68
       objectReference: {fileID: 0}
     - target: {fileID: 8535265655307596135, guid: 380e869112d5086468a3a3992e91109d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5887,7 +5887,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8535265655307596135, guid: 380e869112d5086468a3a3992e91109d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.39
+      value: 0.51
       objectReference: {fileID: 0}
     - target: {fileID: 8535265655307596135, guid: 380e869112d5086468a3a3992e91109d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6237,7 +6237,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8535265655307596135, guid: 380e869112d5086468a3a3992e91109d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.39
+      value: 0.53
       objectReference: {fileID: 0}
     - target: {fileID: 8535265655307596135, guid: 380e869112d5086468a3a3992e91109d, type: 3}
       propertyPath: m_LocalPosition.z

@@ -27,7 +27,7 @@ public class EnemyMove : MonoBehaviour
     void Update()
     {
         int tmpScore=gameController.sceneState;
-        Debug.Log("tmpScore:"+tmpScore);
+       // Debug.Log("tmpScore:"+tmpScore);
         if(sceneScore==tmpScore){
         float distance=Vector3.Magnitude(goalPoint-transform.position);
         if(distance<circle){
