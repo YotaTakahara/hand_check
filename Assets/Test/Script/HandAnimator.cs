@@ -95,7 +95,7 @@ public class HandAnimator : MonoBehaviour
     }
     public int tmpHitosashi=0;
     public int PoseHitosashi(Vector3 place){
-      Debug.Log("tmpHitosashi:"+tmpHitosashi);
+    //  Debug.Log("tmpHitosashi:"+tmpHitosashi);
         if(4<=tmpHitosashi){
            // creObj.InstanceObject(place);
            place.z=-0.5f;
