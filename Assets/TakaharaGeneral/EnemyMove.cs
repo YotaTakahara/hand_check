@@ -55,6 +55,7 @@ public class EnemyMove : MonoBehaviour
     }
     void OnTriggerEnter(Collider collider){
         if(collider.gameObject.tag=="MainCharacter"){
+            
             Debug.Log("アタック対象発見!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         }
     }

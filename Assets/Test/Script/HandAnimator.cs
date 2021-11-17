@@ -3,6 +3,9 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Barracuda;
+using MediaPipe;
+using MediaPipe.FaceLandmark;
+
 namespace MediaPipe.HandPose {
 
 public class HandAnimator : MonoBehaviour
@@ -25,6 +28,8 @@ public class HandAnimator : MonoBehaviour
     [SerializeField] private List<Text> targetText = new List<Text>();
     //[SerializeField] private CreateObject creObj;
     [SerializeField] private GameController gameController;
+    //hennkou
+    [SerializeField] ResourceSetFace _resources1 = null;
    
     // public GameObject tmp;
   
@@ -35,6 +40,8 @@ public class HandAnimator : MonoBehaviour
         #region Private members
 
         HandPipeline _pipeline;
+        // FaceLandmarkDetector _detector;
+        // Material _material;
          
 
 
@@ -70,6 +77,10 @@ public class HandAnimator : MonoBehaviour
 
         void Start()
         {
+            //hennkou
+            // _detector = new FaceLandmarkDetector(_resources1);
+            // _material = new Material(_shader);
+
          _pipeline = new HandPipeline(_resources);
             for (int i = 0; i < target.Count;i++)
             {
@@ -91,6 +102,7 @@ public class HandAnimator : MonoBehaviour
     public int tmpGuu=0;
     public int Pose(){
         if(tmpGuu>50){
+           // gameController.NextPosition(place);
             
             Debug.Log("ぐー!!!!!!!!!!!!!!!!!!!!");
             return 1;
@@ -114,9 +126,11 @@ public class HandAnimator : MonoBehaviour
         }
     }
     public int tmpHutasashi=0;
-    public int PoseHutasashi(){
-     //   Debug.Log("tmpHutasashi:"+tmpHutasashi);
+    public int PoseHutasashi(Vector3 place){
+       
+        //Debug.Log("tmpHutasashi:"+tmpHutasashi);
         if(3<=tmpHutasashi){
+            gameController.NextPosition(place);
             Debug.Log("ピース!!!!!!!!!!!!!!!!!!!!");
             return 1;
         }else{
@@ -217,7 +231,7 @@ public class HandAnimator : MonoBehaviour
             }
 
            
-           int tmp2=PoseHutasashi();
+           int tmp2=PoseHutasashi(_pipeline.GetKeyPoint(8));
            int tmp1=0;
            if (tmp2==0){
                 tmp1=PoseHitosashi(_pipeline.GetKeyPoint(8));

@@ -5,16 +5,17 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField] private GameObject goal;
-    [SerializeField] private Vector3 targetPosition;
-    [SerializeField] private float circleDistance=0.3f;
+    public  Vector3 targetPosition;
+    [SerializeField] private float circleDistance=0.5f;
     public float speed=0.1f;
     public Vector3 firstPosition;
     // Start is called before the first frame update
     void Start()
     {
         goal=GameObject.Find("Goal");
-        targetPosition=goal.transform.position;
+        targetPosition=this.transform.position;
         firstPosition=this.transform.position;
+        Debug.Log("targetPosition:"+targetPosition);
         
     }
 
@@ -22,13 +23,17 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         float tmpDistance=Vector3.Magnitude(targetPosition-transform.position);
+       // Debug.Log("tmpDistance:"+tmpDistance);
         if(tmpDistance<circleDistance){
             targetPosition=SelectWhere();
             Debug.Log("目標位置の変更が起こりました:"+targetPosition);
         }
-        Quaternion targetRotation = Quaternion.LookRotation(targetPosition - transform.position);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime);
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+       // Debug.Log("目標位置の変更が起こりました:"+targetPosition);
+        // Quaternion targetRotation = Quaternion.LookRotation(targetPosition - transform.position);
+        // transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime);
+        Vector3 ne=targetPosition-transform.position;
+       // Debug.Log("transform.position:"+transform.position);
+        transform.Translate( ne.normalized* speed * Time.deltaTime);
         }
 
         
@@ -36,15 +41,19 @@ public class PlayerMove : MonoBehaviour
 
     public Vector3 SelectWhere(){
        // UnityEngine.Random.InitState(DateTime.Now.Millisecond);
-        float tmpX=Random.Range(goal.transform.position.x,transform.position.x);
+    //   UnityEngine.Random.InitState(DateTime.Now.Millisecond);
+        float tmpX=Random.Range(transform.position.x-0.4f,transform.position.x);
         float tmpY=Random.Range(-0.45f,0.45f);
-         tmpX=Random.Range(goal.transform.position.x,transform.position.x);
-         tmpY=Random.Range(-0.45f,0.45f);
+        
         Vector3 where=new Vector3(tmpX,tmpY,-0.1f);
         return where;
 
     }
     public void RelocateToFirst(){
         this.transform.position=firstPosition;
+    }
+    public void RedChange(Vector3 place){
+        targetPosition=place;
+    
     }
 }

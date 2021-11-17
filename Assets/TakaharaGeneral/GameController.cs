@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private PlayerMove playerMove;
     [SerializeField] private GameObject block;
+    [SerializeField] private GameObject cir;
     public int sceneState=0;
     public int score=0;
 
@@ -46,6 +47,17 @@ public class GameController : MonoBehaviour
     public void CreateBlock(Vector3 place){
          place.z=-0.5f;
          Instantiate(block,place,Quaternion.identity);
+    }
+    public void NextPosition(Vector3 place){
+        place.z=-0.1f;
+        playerMove.RedChange(place);
+        Debug.Log("place:"+place);
+
+         place.z=0;
+         Instantiate(cir,place,Quaternion.identity);
+         
+
+
     }
    
 
