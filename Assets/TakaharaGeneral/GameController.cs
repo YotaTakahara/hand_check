@@ -8,16 +8,23 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] private HandAnimator handAnimator;
     [SerializeField] private EnemyList enemyList;
+    [SerializeField] private GameObject effect;
 
     [SerializeField] private List<GameObject> eneList;
     [SerializeField] private List<GameObject> eneList1;
     [SerializeField] private List<GameObject> wallList=new List<GameObject>();
     [SerializeField] private  int tmp=0;
     [SerializeField] private Text text;
+    [SerializeField] private Text textTenpari;
+    [SerializeField] private Text textTenpariMini;
+    private float check=100;
     [SerializeField] private GameObject player;
     [SerializeField] private PlayerMove playerMove;
     [SerializeField] private GameObject block;
     [SerializeField] private GameObject cir;
+    [SerializeField] private FaceCount faceCount;
+    [SerializeField] private float tenpariKeisu=0;
+
     public int sceneState=0;
     public int score=0;
 
@@ -31,6 +38,9 @@ public class GameController : MonoBehaviour
         eneList1=enemyList.eneList1;
         player=GameObject.Find("Player");
         playerMove=player.GetComponent<PlayerMove>();
+        GameObject tmpFace=GameObject.Find("FaceCount");
+        faceCount=tmpFace.GetComponent<FaceCount>();
+        tenpariKeisu=faceCount.tenpariKeisu;
         
       
          Instantiate(wallList[0],transform.position,Quaternion.identity);
@@ -39,13 +49,20 @@ public class GameController : MonoBehaviour
 
     }
     void Update(){
-        
-        text.text="score:"+score;
+        tenpariKeisu=faceCount.tenpariKeisu;
+        text.text="score:"+score+"\n"+"テンパリ係数"+tenpariKeisu;
         ScoreScene();
+        if(check<5){
+            textTenpariMini.text="テンパリ係数が"+tenpariKeisu+"になりました";
+            check+=Time.deltaTime;
+        }else{
+            textTenpariMini.text="";
+
+        }
 
     }
     public void CreateBlock(Vector3 place){
-         place.z=-0.5f;
+         place.z=-0.2f;
          Instantiate(block,place,Quaternion.identity);
     }
     public void NextPosition(Vector3 place){
@@ -74,6 +91,14 @@ public class GameController : MonoBehaviour
         playerMove.RelocateToFirst();
         
         
+    }
+    public void TenpariChange(float k){
+        Debug.Log("テンパリ係数の変化により、状況が変化いたしました");
+        this.check=0;
+        textTenpari.text="ステージレベル"+k*4;
+    }
+    public void MeetEnemy(Vector3 place){
+        Instantiate(effect,place,Quaternion.identity);
     }
 
     

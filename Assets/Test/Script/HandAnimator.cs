@@ -153,26 +153,26 @@ public class HandAnimator : MonoBehaviour
 
 
     public int tmpGuu=0;
-    public int Pose(){
-        if(tmpGuu>50){
-           // gameController.NextPosition(place);
+    // public int Pose(){
+    //     if(tmpGuu>50){
+    //        // gameController.NextPosition(place);
             
-            Debug.Log("ぐー!!!!!!!!!!!!!!!!!!!!");
-            return 1;
-        }else{
-            return 0;
-        }
-    }
+    //         Debug.Log("ぐー!!!!!!!!!!!!!!!!!!!!");
+    //         return 1;
+    //     }else{
+    //         return 0;
+    //     }
+    // }
     public int tmpHitosashi=0;
     public int PoseHitosashi(Vector3 place){
     //  Debug.Log("tmpHitosashi:"+tmpHitosashi);
-        if(4<=tmpHitosashi){
+        if(3<=tmpHitosashi){
            // creObj.InstanceObject(place);
          //  place.z=-0.5f;
           // Instantiate(tmp,place,Quaternion.identity);
           gameController.CreateBlock(place);
-           Debug.Log("place:"+place);
-            Debug.Log("人差し指!!!!!!!!!!!!!!!!!!!!");
+          // Debug.Log("place:"+place);
+            //Debug.Log("人差し指!!!!!!!!!!!!!!!!!!!!");
             return 1;
         }else{
             return 0;
@@ -182,9 +182,9 @@ public class HandAnimator : MonoBehaviour
     public int PoseHutasashi(Vector3 place){
        
         //Debug.Log("tmpHutasashi:"+tmpHutasashi);
-        if(3<=tmpHutasashi){
+        if(5<=tmpHutasashi){
             gameController.NextPosition(place);
-            Debug.Log("ピース!!!!!!!!!!!!!!!!!!!!");
+            //Debug.Log("ピース!!!!!!!!!!!!!!!!!!!!");
             return 1;
         }else{
             return 0;
@@ -241,7 +241,7 @@ public class HandAnimator : MonoBehaviour
               }
               if(18<checkCountHitosashi){
                 this.tmpHitosashi+=1;
-                Debug.Log("一刺し");
+               // Debug.Log("一刺し");
 
             }else{
                 this.tmpHitosashi=0;
@@ -249,9 +249,9 @@ public class HandAnimator : MonoBehaviour
 
 
 
-            if(i==6||i==7||i==8||i==10||i==11||i==12){
+            if(i==18||i==19||i==20){
                   if(0<=_pipeline.GetKeyPoint(i).z) {
-                      checkCountHutasashi+=1;
+                      checkCountHutasashi+=2;
                   }
               }
               else{
@@ -259,9 +259,9 @@ public class HandAnimator : MonoBehaviour
                       checkCountHutasashi+=1;
                   }
               }
-              if(15<checkCountHutasashi){
+              if(21<checkCountHutasashi){
                 this.tmpHutasashi+=1;
-                Debug.Log("2刺し");
+             //   Debug.Log("2刺し");
 
             }else{
                 this.tmpHutasashi=0;
@@ -285,16 +285,16 @@ public class HandAnimator : MonoBehaviour
             }
 
            
-           int tmp2=PoseHutasashi(_pipeline.GetKeyPoint(8));
+           int tmp2=PoseHutasashi(_pipeline.GetKeyPoint(20));
            int tmp1=0;
            if (tmp2==0){
                 tmp1=PoseHitosashi(_pipeline.GetKeyPoint(8));
            }
           // int tmp1=PoseHitosashi(_pipeline.GetKeyPoint(8));
-           if(tmp1==0&&tmp2==0){
-                int tmp0=Pose();
+        //    if(tmp1==0&&tmp2==0){
+        //         int tmp0=Pose();
 
-           }
+        //    }
           
             
 
@@ -343,7 +343,7 @@ public class HandAnimator : MonoBehaviour
       targetFace[13].rectTransform.position = new Vector3(place13.x - 0.5f, place13.y - 0.5f, 0);
       targetFace[14].rectTransform.position = new Vector3(place14.x - 0.5f, place14.y - 0.5f, 0);
       targetFace[15].rectTransform.position = new Vector3(place15.x - 0.5f, place15.y - 0.5f, 0);
-      Debug.Log("VertexBuffer[0]:" + _detector.UpdatePostReadCache()[0]);
+      //Debug.Log("VertexBuffer[0]:" + _detector.UpdatePostReadCache()[0]);
 
       
       for(int i=0;i<16;i++){
@@ -385,21 +385,21 @@ public class HandAnimator : MonoBehaviour
 
 
     }
-     public void OnRenderObject()
-    {
-      var layer=gameObject.layer;
-      // Wireframe mesh rendering
-      _material.SetBuffer("_Vertices", _detector.VertexBuffer);
-      _material.SetPass(0);
-      Graphics.DrawMeshNow(_template, Matrix4x4.identity,layer);
-      //Debug.Log("_material:"+_material);
+    //  public void OnRenderObject()
+    // {
+    //   var layer=gameObject.layer;
+    //   // Wireframe mesh rendering
+    //   _material.SetBuffer("_Vertices", _detector.VertexBuffer);
+    //   _material.SetPass(0);
+    //   Graphics.DrawMeshNow(_template, Matrix4x4.identity,layer);
+    //   //Debug.Log("_material:"+_material);
 
-      // Keypoint marking
-      _material.SetBuffer("_Vertices", _detector.VertexBuffer);
-      _material.SetPass(1);
-      //Debug.Log("_material" + _material);
-      Graphics.DrawProceduralNow(MeshTopology.Lines, 400, 1);
-    }
+    //   // Keypoint marking
+    //   _material.SetBuffer("_Vertices", _detector.VertexBuffer);
+    //   _material.SetPass(1);
+    //   //Debug.Log("_material" + _material);
+    //   Graphics.DrawProceduralNow(MeshTopology.Lines, 400, 1);
+    // }
 
     #endregion
 }

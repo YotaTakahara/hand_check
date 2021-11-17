@@ -9,6 +9,7 @@ public class EnemyMove : MonoBehaviour
     [SerializeField] private float speed=0.1f;
     [SerializeField] private int sceneScore;
     [SerializeField] private GameController gameController; 
+   // [SerializeField] private GameObject effect;
     
     
 
@@ -18,6 +19,7 @@ public class EnemyMove : MonoBehaviour
         goalPoint=transform.position;
         GameObject gameCon=GameObject.Find("GameController");
         gameController=gameCon.GetComponent<GameController>();
+        
         //sceneScore=gameController.scoreState;
 
         
@@ -55,8 +57,9 @@ public class EnemyMove : MonoBehaviour
     }
     void OnTriggerEnter(Collider collider){
         if(collider.gameObject.tag=="MainCharacter"){
-            
+            gameController.MeetEnemy(collider.transform.position);
             Debug.Log("アタック対象発見!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            //Instantiate(effect,transform.position,Quaternion.identity);
         }
     }
 }

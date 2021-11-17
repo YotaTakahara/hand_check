@@ -6,14 +6,54 @@ public class FaceCount : MonoBehaviour
 {
 
     public float tenpariKeisu;
+    [SerializeField] private GameController gameController;
+    [SerializeField] private float tmpScore=0;
+    [SerializeField] private float tmpScore1=0;
+    [SerializeField] private float tenpariTmp=0;
+    float sceneMove=0;
     void Start()
     {
+        GameObject tmpGamCon=GameObject.Find("GameController");
+        gameController=tmpGamCon.GetComponent<GameController>();
+        
+        sceneMove=tenpariKeisu;
+        
         
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {if(0.5<tenpariTmp){
+        tmpScore+=1;
+
+    }
+    if(1<tenpariTmp){
+        tmpScore+=1;
+    }
+    if(tenpariTmp<=0.5){
+        tmpScore-=1;
+        tmpScore1-=1;
+        if(tmpScore<0){
+            tmpScore=0;
+        }if(tmpScore1<0){
+            tmpScore1=0;
+        }
+    }
+
+    if(30<tmpScore){
+        tenpariKeisu=0.5f;
+    }
+    if(30<tmpScore1){
+        tenpariKeisu=1f;
+    }
+
+    if(sceneMove<tenpariKeisu){
+        sceneMove=tenpariKeisu;
+        gameController.TenpariChange(tenpariKeisu);
+    }
+
+
+
         
     }
 
@@ -26,8 +66,8 @@ public class FaceCount : MonoBehaviour
          for(int i=0;i<diff.Length;i++){
              tmp+=diff[i];
          }
-         tenpariKeisu=tmp;
-         Debug.Log("tenpariKeisu:"+tenpariKeisu);
+         tenpariTmp=tmp;
+         //Debug.Log("tenpariTmp:"+tenpariTmp);
          
 
     }

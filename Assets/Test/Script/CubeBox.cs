@@ -38,15 +38,15 @@ public class CubeBox : MonoBehaviour
      void OnTriggerEnter(Collider other) {
         
         //Debug.Log("攻撃判定");
-        if(handAnimator.Pose()==1&&once==0){
-            Debug.Log("破壊します");
-            eneList.Remove(target.gameObject);
-            Destroy(target.gameObject);
-            Destroy(this.gameObject);
-            once=1;
-            enemyGenerator.GenerateEne();
+        // if(handAnimator.Pose()==1&&once==0){
+        //     Debug.Log("破壊します");
+        //     eneList.Remove(target.gameObject);
+        //     Destroy(target.gameObject);
+        //     Destroy(this.gameObject);
+        //     once=1;
+        //     enemyGenerator.GenerateEne();
             
-        }
+        // }
     }
      
 }
