@@ -30,6 +30,11 @@ public class HandAnimator : MonoBehaviour
     [SerializeField] private GameController gameController;
     //hennkou
     [SerializeField] ResourceSetFace _resources1 = null;
+    [SerializeField] Mesh _template = null;
+    [SerializeField] Shader _shader = null;
+    public List<Image> targetFace = new List<Image>();
+
+    [SerializeField] private FaceCount faceCount;
    
     // public GameObject tmp;
   
@@ -38,10 +43,16 @@ public class HandAnimator : MonoBehaviour
         #endregion
 
         #region Private members
+        Vector3[] tmpPlace=new Vector3[16];
+        float[] diff=new float[16];
+
+        
+
+
 
         HandPipeline _pipeline;
-        // FaceLandmarkDetector _detector;
-        // Material _material;
+        FaceLandmarkDetector _detector;
+        Material _material;
          
 
 
@@ -80,8 +91,10 @@ public class HandAnimator : MonoBehaviour
             //hennkou
             // _detector = new FaceLandmarkDetector(_resources1);
             // _material = new Material(_shader);
+             _detector = new FaceLandmarkDetector(_resources1);
+             _material = new Material(_shader);
 
-         _pipeline = new HandPipeline(_resources);
+             _pipeline = new HandPipeline(_resources);
             for (int i = 0; i < target.Count;i++)
             {
             //    Debug.Log("target[i].GetComponent<Text>():" + target[i].GetComponentInChildren<Text>());
@@ -93,6 +106,46 @@ public class HandAnimator : MonoBehaviour
             // creObj=tmpCreate.GetComponent<CreateObject>();
             GameObject tmpCon=GameObject.Find("GameController");
             gameController=tmpCon.GetComponent<GameController>();
+            GameObject tmpFaceCalc=GameObject.Find("FaceCount");
+            faceCount=tmpFaceCalc.GetComponent<FaceCount>();
+            
+
+        Vector4 place = _detector.UpdatePostReadCache()[1];
+      Vector4 place1 = _detector.UpdatePostReadCache()[205];
+      Vector4 place2 = _detector.UpdatePostReadCache()[425];
+      Vector4 place3 = _detector.UpdatePostReadCache()[33];
+      Vector4 place4 = _detector.UpdatePostReadCache()[133];
+      Vector4 place5 = _detector.UpdatePostReadCache()[263];
+      Vector4 place6 = _detector.UpdatePostReadCache()[362];
+      Vector4 place7 = _detector.UpdatePostReadCache()[168];
+      Vector4 place8 = _detector.UpdatePostReadCache()[78];
+      Vector4 place9 = _detector.UpdatePostReadCache()[13];
+      Vector4 place10 = _detector.UpdatePostReadCache()[308];
+      Vector4 place11 = _detector.UpdatePostReadCache()[14];
+      Vector4 place12 = _detector.UpdatePostReadCache()[70];
+      Vector4 place13 = _detector.UpdatePostReadCache()[55];
+      Vector4 place14 = _detector.UpdatePostReadCache()[300];
+      Vector4 place15 = _detector.UpdatePostReadCache()[285];    
+
+
+      tmpPlace[0] = new Vector3(place.x - 0.5f, place.y - 0.5f, 0);
+      tmpPlace[1] = new Vector3(place1.x - 0.5f, place1.y - 0.5f, 0);
+      tmpPlace[2] = new Vector3(place2.x - 0.5f, place2.y - 0.5f, 0);
+      tmpPlace[3] = new Vector3(place3.x - 0.5f, place3.y - 0.5f, 0);
+      tmpPlace[4] = new Vector3(place4.x - 0.5f, place4.y - 0.5f, 0);
+      tmpPlace[5] = new Vector3(place5.x - 0.5f, place5.y - 0.5f, 0);
+      tmpPlace[6] = new Vector3(place6.x - 0.5f, place6.y - 0.5f, 0);
+      tmpPlace[7] = new Vector3(place7.x - 0.5f, place7.y - 0.5f, 0);
+      tmpPlace[8] = new Vector3(place8.x - 0.5f, place8.y - 0.5f, 0);
+      tmpPlace[9] = new Vector3(place9.x - 0.5f, place9.y - 0.5f, 0);
+      tmpPlace[10] = new Vector3(place10.x - 0.5f, place10.y - 0.5f, 0);
+      tmpPlace[11] = new Vector3(place11.x - 0.5f, place11.y - 0.5f, 0);
+      tmpPlace[12] = new Vector3(place12.x - 0.5f, place12.y - 0.5f, 0);
+      tmpPlace[13] = new Vector3(place13.x - 0.5f, place13.y - 0.5f, 0);
+      tmpPlace[14] = new Vector3(place14.x - 0.5f, place14.y - 0.5f, 0);
+      tmpPlace[15] = new Vector3(place15.x - 0.5f, place15.y - 0.5f, 0);
+
+      
         }
 
         void OnDestroy()
@@ -147,6 +200,7 @@ public class HandAnimator : MonoBehaviour
          int  checkCountHutasashi=0;
         // Feed the input image to the Hand pose pipeline.
         _pipeline.UseAsyncReadback = _useAsyncReadback;
+        _detector.ProcessImage(_webcam.Texture);
         _pipeline.ProcessImage(_webcam.Texture);
 
         var layer = gameObject.layer;
@@ -255,6 +309,96 @@ public class HandAnimator : MonoBehaviour
 
         // UI update
         _monitorUI.texture = _webcam.Texture;
+
+      Vector4 place = _detector.UpdatePostReadCache()[1];
+      Vector4 place1 = _detector.UpdatePostReadCache()[205];
+      Vector4 place2 = _detector.UpdatePostReadCache()[425];
+      Vector4 place3 = _detector.UpdatePostReadCache()[33];
+      Vector4 place4 = _detector.UpdatePostReadCache()[133];
+      Vector4 place5 = _detector.UpdatePostReadCache()[263];
+      Vector4 place6 = _detector.UpdatePostReadCache()[362];
+      Vector4 place7 = _detector.UpdatePostReadCache()[168];
+      Vector4 place8 = _detector.UpdatePostReadCache()[78];
+      Vector4 place9 = _detector.UpdatePostReadCache()[13];
+      Vector4 place10 = _detector.UpdatePostReadCache()[308];
+      Vector4 place11 = _detector.UpdatePostReadCache()[14];
+      Vector4 place12 = _detector.UpdatePostReadCache()[70];
+      Vector4 place13 = _detector.UpdatePostReadCache()[55];
+      Vector4 place14 = _detector.UpdatePostReadCache()[300];
+      Vector4 place15 = _detector.UpdatePostReadCache()[285];
+
+      targetFace[0].rectTransform.position = new Vector3(place.x - 0.5f, place.y - 0.5f, 0);
+      targetFace[1].rectTransform.position = new Vector3(place1.x - 0.5f, place1.y - 0.5f, 0);
+      targetFace[2].rectTransform.position = new Vector3(place2.x - 0.5f, place2.y - 0.5f, 0);
+      targetFace[3].rectTransform.position = new Vector3(place3.x - 0.5f, place3.y - 0.5f, 0);
+      targetFace[4].rectTransform.position = new Vector3(place4.x - 0.5f, place4.y - 0.5f, 0);
+      targetFace[5].rectTransform.position = new Vector3(place5.x - 0.5f, place5.y - 0.5f, 0);
+      targetFace[6].rectTransform.position = new Vector3(place6.x - 0.5f, place6.y - 0.5f, 0);
+      targetFace[7].rectTransform.position = new Vector3(place7.x - 0.5f, place7.y - 0.5f, 0);
+      targetFace[8].rectTransform.position = new Vector3(place8.x - 0.5f, place8.y - 0.5f, 0);
+      targetFace[9].rectTransform.position = new Vector3(place9.x - 0.5f, place9.y - 0.5f, 0);
+      targetFace[10].rectTransform.position = new Vector3(place10.x - 0.5f, place10.y - 0.5f, 0);
+      targetFace[11].rectTransform.position = new Vector3(place11.x - 0.5f, place11.y - 0.5f, 0);
+      targetFace[12].rectTransform.position = new Vector3(place12.x - 0.5f, place12.y - 0.5f, 0);
+      targetFace[13].rectTransform.position = new Vector3(place13.x - 0.5f, place13.y - 0.5f, 0);
+      targetFace[14].rectTransform.position = new Vector3(place14.x - 0.5f, place14.y - 0.5f, 0);
+      targetFace[15].rectTransform.position = new Vector3(place15.x - 0.5f, place15.y - 0.5f, 0);
+      Debug.Log("VertexBuffer[0]:" + _detector.UpdatePostReadCache()[0]);
+
+      
+      for(int i=0;i<16;i++){
+          diff[i]=(faceCount.DiffFaceScore(tmpPlace[i],targetFace[i].rectTransform.position));
+          
+      }
+      faceCount.CalcFaceScore(diff);
+
+
+
+
+
+
+
+
+      tmpPlace[0]=targetFace[0].rectTransform.position;
+      tmpPlace[1]=targetFace[1].rectTransform.position;
+      tmpPlace[2]=targetFace[2].rectTransform.position;
+      tmpPlace[3]=targetFace[3].rectTransform.position;
+      tmpPlace[4]=targetFace[4].rectTransform.position;
+      tmpPlace[5]=targetFace[5].rectTransform.position;
+      tmpPlace[6]=targetFace[6].rectTransform.position;
+      tmpPlace[7]=targetFace[7].rectTransform.position;
+      tmpPlace[8]=targetFace[8].rectTransform.position;
+      tmpPlace[9]=targetFace[9].rectTransform.position;
+      tmpPlace[10]=targetFace[10].rectTransform.position;
+      tmpPlace[11]=targetFace[11].rectTransform.position;
+      tmpPlace[12]=targetFace[12].rectTransform.position;
+      tmpPlace[13]=targetFace[13].rectTransform.position;
+      tmpPlace[14]=targetFace[14].rectTransform.position;
+      tmpPlace[15]=targetFace[15].rectTransform.position;
+
+
+
+
+
+
+
+
+
+    }
+     public void OnRenderObject()
+    {
+      var layer=gameObject.layer;
+      // Wireframe mesh rendering
+      _material.SetBuffer("_Vertices", _detector.VertexBuffer);
+      _material.SetPass(0);
+      Graphics.DrawMeshNow(_template, Matrix4x4.identity,layer);
+      //Debug.Log("_material:"+_material);
+
+      // Keypoint marking
+      _material.SetBuffer("_Vertices", _detector.VertexBuffer);
+      _material.SetPass(1);
+      //Debug.Log("_material" + _material);
+      Graphics.DrawProceduralNow(MeshTopology.Lines, 400, 1);
     }
 
     #endregion
