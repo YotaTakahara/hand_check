@@ -45,6 +45,8 @@ public class HandAnimator : MonoBehaviour
         #region Private members
         Vector3[] tmpPlace=new Vector3[16];
         float[] diff=new float[16];
+        float howcheck=3;
+        float span=4.5f;
 
         
 
@@ -166,11 +168,13 @@ public class HandAnimator : MonoBehaviour
     public int tmpHitosashi=0;
     public int PoseHitosashi(Vector3 place){
     //  Debug.Log("tmpHitosashi:"+tmpHitosashi);
-        if(3<=tmpHitosashi){
+        if(4<=tmpHitosashi){
            // creObj.InstanceObject(place);
          //  place.z=-0.5f;
           // Instantiate(tmp,place,Quaternion.identity);
+          //tmpHitosashi=0;
           gameController.CreateBlock(place);
+          
           // Debug.Log("place:"+place);
             //Debug.Log("人差し指!!!!!!!!!!!!!!!!!!!!");
             return 1;
@@ -181,10 +185,12 @@ public class HandAnimator : MonoBehaviour
     public int tmpHutasashi=0;
     public int PoseHutasashi(Vector3 place){
        
-        //Debug.Log("tmpHutasashi:"+tmpHutasashi);
-        if(5<=tmpHutasashi){
+        Debug.Log("小指判定:"+tmpHutasashi);
+        if(5<=tmpHutasashi&&span<howcheck){
             gameController.NextPosition(place);
-            //Debug.Log("ピース!!!!!!!!!!!!!!!!!!!!");
+            howcheck=0;
+            Debug.Log("小指!!!!!!!!!!!!!!!!!!!!");
+            tmpHutasashi=0;
             return 1;
         }else{
             return 0;
@@ -197,7 +203,8 @@ public class HandAnimator : MonoBehaviour
     {
         int checkCount=0;
         int  checkCountHitosashi=0;
-         int  checkCountHutasashi=0;
+         float  checkCountHutasashi=0;
+         howcheck+=Time.deltaTime;
         // Feed the input image to the Hand pose pipeline.
         _pipeline.UseAsyncReadback = _useAsyncReadback;
         _detector.ProcessImage(_webcam.Texture);
@@ -239,7 +246,7 @@ public class HandAnimator : MonoBehaviour
                       checkCountHitosashi+=1;
                   }
               }
-              if(18<checkCountHitosashi){
+              if(16<checkCountHitosashi){
                 this.tmpHitosashi+=1;
                // Debug.Log("一刺し");
 
@@ -251,7 +258,7 @@ public class HandAnimator : MonoBehaviour
 
             if(i==18||i==19||i==20){
                   if(0<=_pipeline.GetKeyPoint(i).z) {
-                      checkCountHutasashi+=2;
+                      checkCountHutasashi+=2f;
                   }
               }
               else{
@@ -259,7 +266,8 @@ public class HandAnimator : MonoBehaviour
                       checkCountHutasashi+=1;
                   }
               }
-              if(21<checkCountHutasashi){
+              Debug.Log("checkCountHutasashi:"+checkCountHutasashi);
+              if(16<=checkCountHutasashi){
                 this.tmpHutasashi+=1;
              //   Debug.Log("2刺し");
 
@@ -385,21 +393,21 @@ public class HandAnimator : MonoBehaviour
 
 
     }
-    //  public void OnRenderObject()
-    // {
-    //   var layer=gameObject.layer;
-    //   // Wireframe mesh rendering
-    //   _material.SetBuffer("_Vertices", _detector.VertexBuffer);
-    //   _material.SetPass(0);
-    //   Graphics.DrawMeshNow(_template, Matrix4x4.identity,layer);
-    //   //Debug.Log("_material:"+_material);
+     public void OnRenderObject()
+    {
+      var layer=gameObject.layer;
+      // Wireframe mesh rendering
+      _material.SetBuffer("_Vertices", _detector.VertexBuffer);
+      _material.SetPass(0);
+      Graphics.DrawMeshNow(_template, Matrix4x4.identity,layer);
+      //Debug.Log("_material:"+_material);
 
-    //   // Keypoint marking
-    //   _material.SetBuffer("_Vertices", _detector.VertexBuffer);
-    //   _material.SetPass(1);
-    //   //Debug.Log("_material" + _material);
-    //   Graphics.DrawProceduralNow(MeshTopology.Lines, 400, 1);
-    // }
+      // Keypoint marking
+      _material.SetBuffer("_Vertices", _detector.VertexBuffer);
+      _material.SetPass(1);
+      //Debug.Log("_material" + _material);
+      Graphics.DrawProceduralNow(MeshTopology.Lines, 400, 1);
+    }
 
     #endregion
 }

@@ -27,6 +27,7 @@ public class GameController : MonoBehaviour
 
     public int sceneState=0;
     public int score=0;
+    public int life=0;
 
 
     void Start(){
@@ -38,6 +39,7 @@ public class GameController : MonoBehaviour
         eneList1=enemyList.eneList1;
         player=GameObject.Find("Player");
         playerMove=player.GetComponent<PlayerMove>();
+        life=playerMove.life;
         GameObject tmpFace=GameObject.Find("FaceCount");
         faceCount=tmpFace.GetComponent<FaceCount>();
         tenpariKeisu=faceCount.tenpariKeisu;
@@ -50,7 +52,8 @@ public class GameController : MonoBehaviour
     }
     void Update(){
         tenpariKeisu=faceCount.tenpariKeisu;
-        text.text="score:"+score+"\n"+"テンパリ係数"+tenpariKeisu;
+        life=playerMove.life;
+        text.text="score:"+score+"\n"+"テンパリ係数"+tenpariKeisu+"\n"+"life:"+life;
         ScoreScene();
         if(check<5){
             textTenpariMini.text="テンパリ係数が"+tenpariKeisu+"になりました";
@@ -90,6 +93,8 @@ public class GameController : MonoBehaviour
         Debug.Log("状態が推移しましたのでお知らせします!!!!!!!!!!!!!!!!!!!");
         playerMove.RelocateToFirst();
         
+
+        
         
     }
     public void TenpariChange(float k){
@@ -99,6 +104,7 @@ public class GameController : MonoBehaviour
     }
     public void MeetEnemy(Vector3 place){
         Instantiate(effect,place,Quaternion.identity);
+        playerMove.life-=1;
     }
 
     

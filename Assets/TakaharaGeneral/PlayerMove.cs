@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField] private GameObject goal;
     [SerializeField] private float circleDistance=0.5f;
     [SerializeField] private FaceCount faceCount;
+    //[SerializeField] private Text text;
+
 
     float tenpariKeisu=1f;
     float tenpariTmp=1f;
@@ -16,7 +19,7 @@ public class PlayerMove : MonoBehaviour
 
     public float speed=0.1f;
     public Vector3 firstPosition;
-    public int HP=5;
+    public int life=5;
     void Start()
     {
         goal=GameObject.Find("Goal");
@@ -34,7 +37,7 @@ public class PlayerMove : MonoBehaviour
     
     void Update()
     {
-        Debug.Log("speed:"+speed);
+        //Debug.Log("speed:"+speed);
         
         tenpariKeisu=faceCount.tenpariKeisu;
         if(tenpariTmp<tenpariKeisu){
@@ -63,6 +66,8 @@ public class PlayerMove : MonoBehaviour
         // Debug.Log("ne.normalized:"+ne*speed*Time.deltaTime);
 
         // }
+        CheckLife();
+        
         }
 
         
@@ -89,5 +94,11 @@ public class PlayerMove : MonoBehaviour
     }
     public void TenpariChange(float k){
         speed=speed*k;
+    }
+    public void CheckLife(){
+        if(life<=0){
+            SceneManager.LoadScene("Fish");
+
+        }
     }
 }

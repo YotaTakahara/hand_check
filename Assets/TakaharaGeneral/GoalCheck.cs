@@ -6,12 +6,14 @@ public class GoalCheck : MonoBehaviour
 {
     
     [SerializeField] private GameController gameController;
+    [SerializeField] private EnemyList enemyList;
     public int sceneState=0;
     void Start()
     {
         GameObject tmpCon=GameObject.Find("GameController");
         gameController=tmpCon.GetComponent<GameController>();
         sceneState=gameController.sceneState;
+        GameObject enelistTmp;
         
     }
 

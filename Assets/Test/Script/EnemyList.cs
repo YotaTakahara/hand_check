@@ -18,4 +18,16 @@ public class EnemyList : MonoBehaviour
     {
         
     }
+    public void WhatWillDie(int nowScene){
+      // for(int i=0;i<eneList.Count;i++){
+      //   int tmp=eneList[i].GetComponent<EnemyMove>().sceneScore;
+      //   GameObject monTmp=eneList[i];
+      //   if(tmp<nowScene){
+      //     eneList.RemoveAt(i);
+      //     Destroy(monTmp.gameObject);
+      //   }
+
+      // }
+      
+    }
 }

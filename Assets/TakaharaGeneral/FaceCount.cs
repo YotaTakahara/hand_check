@@ -28,14 +28,14 @@ public class FaceCount : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {if(0.5<tenpariTmp){
+    {if(0.3<tenpariTmp){
         tmpScore+=1;
 
     }
-    if(1<tenpariTmp){
+    if(0.5<tenpariTmp){
         tmpScore+=1;
     }
-    if(tenpariTmp<=0.5){
+    if(tenpariTmp<=0.3){
         tmpScore-=1;
         tmpScore1-=1;
         if(tmpScore<0){
