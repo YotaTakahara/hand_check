@@ -10,6 +10,8 @@ public class EnemyMove : MonoBehaviour
     [SerializeField] private int sceneScore;
     [SerializeField] private GameController gameController; 
     [SerializeField] private FaceCount faceCount;
+    float tenpariKeisu=1.0f;
+    float tenpariTmp=1f;
    // [SerializeField] private GameObject effect;
     
     
@@ -22,7 +24,9 @@ public class EnemyMove : MonoBehaviour
         gameController=gameCon.GetComponent<GameController>();
         GameObject faceTmp=GameObject.Find("FaceCount");
         faceCount=faceTmp.GetComponent<FaceCount>();
+         tenpariKeisu=faceCount.tenpariKeisu;
         
+
         //sceneScore=gameController.scoreState;
 
         
@@ -31,9 +35,11 @@ public class EnemyMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float tenpariKeisu=faceCount.tenpariKeisu;
-        speed=speed*tenpariKeisu;
-
+        tenpariKeisu=faceCount.tenpariKeisu;
+        if(tenpariTmp<tenpariKeisu){
+            tenpariTmp=tenpariKeisu;
+            TenpariChange(tenpariKeisu);
+        }
         int tmpScore=gameController.sceneState;
        // Debug.Log("tmpScore:"+tmpScore);
         if(sceneScore==tmpScore){
@@ -67,5 +73,9 @@ public class EnemyMove : MonoBehaviour
             Debug.Log("アタック対象発見!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             //Instantiate(effect,transform.position,Quaternion.identity);
         }
+    }
+
+    public void TenpariChange(float k){
+        speed=speed*k;
     }
 }

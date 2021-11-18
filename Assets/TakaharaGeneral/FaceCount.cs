@@ -10,11 +10,16 @@ public class FaceCount : MonoBehaviour
     [SerializeField] private float tmpScore=0;
     [SerializeField] private float tmpScore1=0;
     [SerializeField] private float tenpariTmp=0;
+    [SerializeField] private PlayerMove playerMove;
+    [SerializeField] private EnemyMove enemyMove;
     float sceneMove=0;
     void Start()
     {
         GameObject tmpGamCon=GameObject.Find("GameController");
         gameController=tmpGamCon.GetComponent<GameController>();
+        // GameObject playerTmp=GameObject.Find("Player");
+        // playerMove=playerTmp.GetComponent<PlayerMove>();
+        // GameObject enemyMove=GameObject.Find("")
         
         sceneMove=tenpariKeisu;
         
@@ -40,10 +45,10 @@ public class FaceCount : MonoBehaviour
         }
     }
 
-    if(30<tmpScore){
+    if(30<tmpScore&&tenpariKeisu<1.5f){
         tenpariKeisu=1.5f;
     }
-    if(30<tmpScore1){
+    if(30<tmpScore1&&tenpariKeisu<2f){
         tenpariKeisu=2f;
     }
 

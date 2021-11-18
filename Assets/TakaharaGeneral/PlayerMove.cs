@@ -7,7 +7,12 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private GameObject goal;
     [SerializeField] private float circleDistance=0.5f;
     [SerializeField] private FaceCount faceCount;
+
+    float tenpariKeisu=1f;
+    float tenpariTmp=1f;
+
     public  Vector3 targetPosition;
+
 
     public float speed=0.1f;
     public Vector3 firstPosition;
@@ -20,6 +25,8 @@ public class PlayerMove : MonoBehaviour
         //Debug.Log("goal:"+goal.transform.position);
         targetPosition=this.transform.position;
         firstPosition=this.transform.position;
+        tenpariKeisu=faceCount.tenpariKeisu;
+        tenpariTmp=tenpariKeisu;
         //Debug.Log("targetPosition:"+targetPosition);
         
     }
@@ -27,8 +34,13 @@ public class PlayerMove : MonoBehaviour
     
     void Update()
     {
-        float tenpariKeisu=faceCount.tenpariKeisu;
-        speed=speed*tenpariKeisu;
+        Debug.Log("speed:"+speed);
+        
+        tenpariKeisu=faceCount.tenpariKeisu;
+        if(tenpariTmp<tenpariKeisu){
+            tenpariTmp=tenpariKeisu;
+            TenpariChange(tenpariKeisu);
+        }
         
         float tmpDistance=Vector3.Magnitude(targetPosition-transform.position);
        // Debug.Log("tmpDistance:"+tmpDistance);
@@ -45,12 +57,12 @@ public class PlayerMove : MonoBehaviour
 
        // Debug.Log("transform.position:"+transform.position);
         transform.Translate(ne* speed * Time.deltaTime);
-        if(transform.position.z<-0.1f){
-        Debug.Log("transform.position:"+transform.position);
-        Debug.Log("targetPosition:"+targetPosition);
-        Debug.Log("ne.normalized:"+ne*speed*Time.deltaTime);
+        // if(transform.position.z<-0.1f){
+        // Debug.Log("transform.position:"+transform.position);
+        // Debug.Log("targetPosition:"+targetPosition);
+        // Debug.Log("ne.normalized:"+ne*speed*Time.deltaTime);
 
-        }
+        // }
         }
 
         
@@ -74,5 +86,8 @@ public class PlayerMove : MonoBehaviour
         Debug.Log("targetPosition:"+targetPosition);
         targetPosition=place;
     
+    }
+    public void TenpariChange(float k){
+        speed=speed*k;
     }
 }
