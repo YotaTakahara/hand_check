@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Fish.unity
     guid: 6d556f7a885b4454583b58847c109a90
+  - enabled: 1
+    path: Assets/Tmp.unity
+    guid: 88e84413a5ac04838971f54b00a47bf1
   m_configObjects: {}

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GoalCheck : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class GoalCheck : MonoBehaviour
             Debug.Log("You did it !!!!!!!!!!!!!!!!!");
             gameController.sceneState+=1;
             gameController.StateChange();
+            SceneManager.LoadScene("Tmp");
 
             
         }
