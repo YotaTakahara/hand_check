@@ -23,7 +23,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject block;
     [SerializeField] private GameObject cir;
     [SerializeField] private FaceCount faceCount;
-    [SerializeField] private float tenpariKeisu=0;
+    [SerializeField] private float tenpariKeisu=1;
 
     public int sceneState=0;
     public int score=0;
@@ -95,7 +95,7 @@ public class GameController : MonoBehaviour
     public void TenpariChange(float k){
         Debug.Log("テンパリ係数の変化により、状況が変化いたしました");
         this.check=0;
-        textTenpari.text="ステージレベル"+k*4;
+        textTenpari.text="ステージレベル"+k;
     }
     public void MeetEnemy(Vector3 place){
         Instantiate(effect,place,Quaternion.identity);

@@ -5,7 +5,7 @@ using UnityEngine;
 public class FaceCount : MonoBehaviour
 {
 
-    public float tenpariKeisu;
+    public float tenpariKeisu=1;
     [SerializeField] private GameController gameController;
     [SerializeField] private float tmpScore=0;
     [SerializeField] private float tmpScore1=0;
@@ -41,10 +41,10 @@ public class FaceCount : MonoBehaviour
     }
 
     if(30<tmpScore){
-        tenpariKeisu=0.5f;
+        tenpariKeisu=1.5f;
     }
     if(30<tmpScore1){
-        tenpariKeisu=1f;
+        tenpariKeisu=2f;
     }
 
     if(sceneMove<tenpariKeisu){

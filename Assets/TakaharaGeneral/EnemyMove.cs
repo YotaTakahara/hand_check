@@ -9,6 +9,7 @@ public class EnemyMove : MonoBehaviour
     [SerializeField] private float speed=0.1f;
     [SerializeField] private int sceneScore;
     [SerializeField] private GameController gameController; 
+    [SerializeField] private FaceCount faceCount;
    // [SerializeField] private GameObject effect;
     
     
@@ -19,6 +20,8 @@ public class EnemyMove : MonoBehaviour
         goalPoint=transform.position;
         GameObject gameCon=GameObject.Find("GameController");
         gameController=gameCon.GetComponent<GameController>();
+        GameObject faceTmp=GameObject.Find("FaceCount");
+        faceCount=faceTmp.GetComponent<FaceCount>();
         
         //sceneScore=gameController.scoreState;
 
@@ -28,6 +31,9 @@ public class EnemyMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float tenpariKeisu=faceCount.tenpariKeisu;
+        speed=speed*tenpariKeisu;
+
         int tmpScore=gameController.sceneState;
        // Debug.Log("tmpScore:"+tmpScore);
         if(sceneScore==tmpScore){
@@ -38,7 +44,7 @@ public class EnemyMove : MonoBehaviour
         }
          Quaternion targetRotation = Quaternion.LookRotation(goalPoint - transform.position);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime);
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        transform.Translate(Vector3.forward * speed/2 * Time.deltaTime);
         }
         
         
