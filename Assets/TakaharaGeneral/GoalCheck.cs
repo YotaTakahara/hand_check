@@ -8,12 +8,12 @@ public class GoalCheck : MonoBehaviour
     
     [SerializeField] private GameController gameController;
     [SerializeField] private EnemyList enemyList;
-    public int sceneState=0;
+    //public int sceneState=0;
     void Start()
     {
         GameObject tmpCon=GameObject.Find("GameController");
         gameController=tmpCon.GetComponent<GameController>();
-        sceneState=gameController.sceneState;
+       // sceneState=gameController.sceneState;
         GameObject enelistTmp;
         
     }
@@ -21,15 +21,19 @@ public class GoalCheck : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        sceneState=gameController.sceneState;
+       // sceneState=gameController.sceneState;
         
     }
     void OnTriggerEnter(Collider collider){
         if(collider.gameObject.tag=="MainCharacter"){
             Debug.Log("You did it !!!!!!!!!!!!!!!!!");
-            gameController.sceneState+=1;
+            //gameController.sceneState+=1;
+           
+            gameController.ScoreCount();
+            //PlayerPrefs.SetInt("Score",gameController.score);
             gameController.StateChange();
-            SceneManager.LoadScene("Tmp");
+            
+            //SceneManager.LoadScene("Tmp");
 
             
         }

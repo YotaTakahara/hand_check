@@ -32,6 +32,7 @@ public class BlockMove : MonoBehaviour
     void OnTriggerEnter(Collider collider){
         if(collider.gameObject.tag=="MainCharacter"){
             GetComponent<Renderer>().material.color=Color.red;
+        
             checkChara=1;
         }
     }

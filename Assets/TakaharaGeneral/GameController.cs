@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using MediaPipe.HandPose;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject effect;
 
     [SerializeField] private List<GameObject> eneList;
-    [SerializeField] private List<GameObject> eneList1;
+    //[SerializeField] private List<GameObject> eneList1;
     [SerializeField] private List<GameObject> wallList=new List<GameObject>();
     [SerializeField] private  int tmp=0;
     [SerializeField] private Text text;
@@ -36,16 +37,18 @@ public class GameController : MonoBehaviour
         GameObject ene=GameObject.Find("EnemyList");
         enemyList=ene.GetComponent<EnemyList>();
         eneList=enemyList.eneList;
-        eneList1=enemyList.eneList1;
+        //eneList1=enemyList.eneList1;
         player=GameObject.Find("Player");
         playerMove=player.GetComponent<PlayerMove>();
         life=playerMove.life;
         GameObject tmpFace=GameObject.Find("FaceCount");
         faceCount=tmpFace.GetComponent<FaceCount>();
         tenpariKeisu=faceCount.tenpariKeisu;
+        Initialize();
+
         
       
-         Instantiate(wallList[0],transform.position,Quaternion.identity);
+         //Instantiate(wallList[0],transform.position,Quaternion.identity);
 
         
 
@@ -54,7 +57,7 @@ public class GameController : MonoBehaviour
         tenpariKeisu=faceCount.tenpariKeisu;
         life=playerMove.life;
         text.text="score:"+score+"\n"+"テンパリ係数"+tenpariKeisu+"\n"+"life:"+life;
-        ScoreScene();
+        
         if(check<5){
             textTenpariMini.text="テンパリ係数が"+tenpariKeisu+"になりました";
             check+=Time.deltaTime;
@@ -81,20 +84,45 @@ public class GameController : MonoBehaviour
     }
    
 
-    public void ScoreScene(){
-        if(sceneState==1){
-            Instantiate(wallList[1],transform.position,Quaternion.identity);
-            score=score+eneList.Count;
-            
-        }
+    public void Initialize(){
+        //score=PlayerPrefs.GetInt("Score",0);
+        if(SceneManager.GetActiveScene().name == "TestAnimator"){
+            sceneState=0;
+            Instantiate(wallList[0],transform.position,Quaternion.identity);
 
+        }
+        else if(SceneManager.GetActiveScene().name == "Tmp"){
+            sceneState=1;
+            Instantiate(wallList[1],transform.position,Quaternion.identity);
+
+        }
+            
+          
+
+    }
+    public void ScoreCount(){
+        
     }
     public void StateChange(){
         Debug.Log("状態が推移しましたのでお知らせします!!!!!!!!!!!!!!!!!!!");
+        
+        DontDestroyOnLoad(faceCount);
         playerMove.RelocateToFirst();
+        DontDestroyOnLoad(player);
+        DontDestroyOnLoad(this);
         
+         if(SceneManager.GetActiveScene().name == "TestAnimator"){
+            //sceneState=0;
+            //Instantiate(wallList[0],transform.position,Quaternion.identity);
+            SceneManager.LoadScene("Tmp");
 
-        
+        }
+        else if(SceneManager.GetActiveScene().name == "Tmp"){
+            //sceneState=1;
+            //Instantiate(wallList[1],transform.position,Quaternion.identity);
+            SceneManager.LoadScene("Boss");
+
+        }
         
     }
     public void TenpariChange(float k){

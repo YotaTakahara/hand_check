@@ -35,6 +35,7 @@ public class HandAnimator : MonoBehaviour
     public List<Image> targetFace = new List<Image>();
 
     [SerializeField] private FaceCount faceCount;
+    public int meshCheck=0;
    
     // public GameObject tmp;
   
@@ -394,7 +395,7 @@ public class HandAnimator : MonoBehaviour
 
     }
      public void OnRenderObject()
-    {
+    {if(meshCheck==0){
       var layer=gameObject.layer;
       // Wireframe mesh rendering
       _material.SetBuffer("_Vertices", _detector.VertexBuffer);
@@ -407,6 +408,7 @@ public class HandAnimator : MonoBehaviour
       _material.SetPass(1);
       //Debug.Log("_material" + _material);
       Graphics.DrawProceduralNow(MeshTopology.Lines, 400, 1);
+    }
     }
 
     #endregion

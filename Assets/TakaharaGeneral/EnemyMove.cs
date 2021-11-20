@@ -7,7 +7,7 @@ public class EnemyMove : MonoBehaviour
     [SerializeField] private float circle=0.7f;
     [SerializeField] private Vector3 goalPoint;
     [SerializeField] private float speed=0.1f;
-    public  int sceneScore;
+   // public  int sceneScore;
     [SerializeField] private GameController gameController; 
     [SerializeField] private FaceCount faceCount;
     float tenpariKeisu=1.0f;
@@ -40,12 +40,12 @@ public class EnemyMove : MonoBehaviour
             tenpariTmp=tenpariKeisu;
             TenpariChange(tenpariKeisu);
         }
-        int tmpScore=gameController.sceneState;
-        if(sceneScore<tmpScore){
+        // int tmpScore=gameController.sceneState;
+        // if(sceneScore<tmpScore){
 
-        }
+        // }
        // Debug.Log("tmpScore:"+tmpScore);
-        if(sceneScore==tmpScore){
+        
         float distance=Vector3.Magnitude(goalPoint-transform.position);
         if(distance<circle){
             goalPoint=SelectPoint();
@@ -54,7 +54,7 @@ public class EnemyMove : MonoBehaviour
          Quaternion targetRotation = Quaternion.LookRotation(goalPoint - transform.position);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime);
         transform.Translate(Vector3.forward * speed/2 * Time.deltaTime);
-        }
+        
         
         
     }
