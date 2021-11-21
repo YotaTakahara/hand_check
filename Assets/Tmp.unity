@@ -1541,7 +1541,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clips:
   - {fileID: 8300000, guid: 632383ff2891f0e4aaddf5a9b13795ff, type: 3}
-  - {fileID: 8300000, guid: 30939228726ee704f98d5a8ecb84106b, type: 3}
+  - {fileID: 8300000, guid: 26fbf6bb6963666478f6992bc53b9145, type: 3}
+  - {fileID: 8300000, guid: 618be86712ffac947997f96463301683, type: 3}
   tenpariKeisu: 1
   faceCount: {fileID: 0}
   player: {fileID: 0}
@@ -1864,7 +1865,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8535265655307596135, guid: 380e869112d5086468a3a3992e91109d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.555
+      value: -0.106
       objectReference: {fileID: 0}
     - target: {fileID: 8535265655307596135, guid: 380e869112d5086468a3a3992e91109d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2916,7 +2917,7 @@ MonoBehaviour:
   faceCount: {fileID: 0}
   tenpariKeisu: 0
   sceneState: 0
-  score: 0
+  timeScore: 0
 --- !u!4 &637822266
 Transform:
   m_ObjectHideFlags: 0
@@ -7513,7 +7514,7 @@ MonoBehaviour:
   - {fileID: 1713247350}
   - {fileID: 990308360}
   faceCount: {fileID: 0}
-  meshCheck: 0
+  meshCheck: 1
   tmpGuu: 0
   tmpHitosashi: 0
   tmpHutasashi: 0
@@ -7718,7 +7719,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8535265655307596135, guid: 380e869112d5086468a3a3992e91109d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.071
+      value: 0.376
       objectReference: {fileID: 0}
     - target: {fileID: 8535265655307596135, guid: 380e869112d5086468a3a3992e91109d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8287,6 +8288,7 @@ MonoBehaviour:
   enemyMove: {fileID: 0}
   effectController: {fileID: 0}
   life: 5
+  timeScore: 0
 --- !u!4 &2000647440
 Transform:
   m_ObjectHideFlags: 0
@@ -8772,7 +8774,6 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   speed: 0.35
   firstPosition: {x: 0, y: 0, z: 0}
-  life: 5
 --- !u!135 &2055012700
 SphereCollider:
   m_ObjectHideFlags: 0

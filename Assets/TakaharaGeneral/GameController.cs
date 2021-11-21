@@ -28,7 +28,7 @@ public class GameController : MonoBehaviour
 
     //public int playerHP=5;
     public int sceneState=0;
-    public int score=0;
+    public float timeScore=0;
     int life=5;
 
 
@@ -45,6 +45,7 @@ public class GameController : MonoBehaviour
         GameObject tmpFace=GameObject.Find("FaceCount");
         faceCount=tmpFace.GetComponent<FaceCount>();
         tenpariKeisu=faceCount.tenpariKeisu;
+        TenpariChange(tenpariKeisu);
         Initialize();
 
         
@@ -56,8 +57,10 @@ public class GameController : MonoBehaviour
     }
     void Update(){
         tenpariKeisu=faceCount.tenpariKeisu;
+        timeScore+=Time.deltaTime;
         //life=playerMove.life;
-        text.text="score:"+score+"\n"+"テンパリ係数"+tenpariKeisu+"\n"+"life:"+life;
+        //text.color=new Color(0.5,0)
+        text.text="Time:"+(int)timeScore+"\n"+"テンパリ係数"+tenpariKeisu+"\n"+"life:"+life;
         
         if(check<5){
             textTenpariMini.text="テンパリ係数が"+tenpariKeisu+"になりました";
@@ -88,7 +91,8 @@ public class GameController : MonoBehaviour
     public void Initialize(){
         //score=PlayerPrefs.GetInt("Score",0);
         life=faceCount.life;
-        playerMove.life=life;
+        timeScore=faceCount.timeScore;
+        //playerMove.life=life;
         if(SceneManager.GetActiveScene().name == "TestAnimator"){
             sceneState=0;
             Instantiate(wallList[0],transform.position,Quaternion.identity);
@@ -109,6 +113,7 @@ public class GameController : MonoBehaviour
     public void StateChange(){
         Debug.Log("状態が推移しましたのでお知らせします!!!!!!!!!!!!!!!!!!!");
         faceCount.life=life;
+        faceCount.timeScore=timeScore;
         
         DontDestroyOnLoad(faceCount);
         //playerMove.RelocateToFirst();
@@ -124,20 +129,29 @@ public class GameController : MonoBehaviour
         else if(SceneManager.GetActiveScene().name == "Tmp"){
             //sceneState=1;
             //Instantiate(wallList[1],transform.position,Quaternion.identity);
-            SceneManager.LoadScene("Boss");
+            SceneManager.LoadScene("UserRegistration");
 
         }
         
     }
     public void TenpariChange(float k){
+        if(1<k){
         Debug.Log("テンパリ係数の変化により、状況が変化いたしました");
         this.check=0;
         textTenpari.text="ステージレベル"+k;
+        }
     }
     public void MeetEnemy(Vector3 place){
         Instantiate(effect,place,Quaternion.identity);
         //playerMove.life-=1;
         life-=1;
+         CheckLife();
+    }
+     public void CheckLife(){
+        if(life <=0){
+            SceneManager.LoadScene("Fish");
+
+        }
     }
 
     

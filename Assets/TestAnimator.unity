@@ -164,7 +164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7150733202489931162, guid: 279367673fa6c794cb61b0d23eac8e77, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.325
+      value: -0.584
       objectReference: {fileID: 0}
     - target: {fileID: 7150733202489931162, guid: 279367673fa6c794cb61b0d23eac8e77, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1013,8 +1013,7 @@ MonoBehaviour:
   faceCount: {fileID: 0}
   tenpariKeisu: 0
   sceneState: 0
-  score: 0
-  life: 5
+  timeScore: 0
 --- !u!4 &152957072
 Transform:
   m_ObjectHideFlags: 0
@@ -2027,7 +2026,7 @@ MonoBehaviour:
   - {fileID: 222308916}
   - {fileID: 1838119904}
   faceCount: {fileID: 0}
-  meshCheck: 0
+  meshCheck: 1
   tmpGuu: 0
   tmpHitosashi: 0
   tmpHutasashi: 0
@@ -2362,11 +2361,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7150733202489931162, guid: 279367673fa6c794cb61b0d23eac8e77, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.04
+      value: 0.29
       objectReference: {fileID: 0}
     - target: {fileID: 7150733202489931162, guid: 279367673fa6c794cb61b0d23eac8e77, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.124
+      value: 0.551
       objectReference: {fileID: 0}
     - target: {fileID: 7150733202489931162, guid: 279367673fa6c794cb61b0d23eac8e77, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2479,7 +2478,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 533.3333, y: 300}
+  m_SizeDelta: {x: 631.9, y: 394}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &517617633
 MonoBehaviour:
@@ -3337,6 +3336,8 @@ MonoBehaviour:
   playerMove: {fileID: 0}
   enemyMove: {fileID: 0}
   effectController: {fileID: 0}
+  life: 5
+  timeScore: 0
 --- !u!4 &722811759
 Transform:
   m_ObjectHideFlags: 0
@@ -3882,11 +3883,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7150733202489931162, guid: 279367673fa6c794cb61b0d23eac8e77, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.374
+      value: -0.708
       objectReference: {fileID: 0}
     - target: {fileID: 7150733202489931162, guid: 279367673fa6c794cb61b0d23eac8e77, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.136
+      value: -0.511
       objectReference: {fileID: 0}
     - target: {fileID: 7150733202489931162, guid: 279367673fa6c794cb61b0d23eac8e77, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4047,7 +4048,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.12774521, b: 0.4245283, a: 1}
+  m_Color: {r: 0.20024922, g: 0.9151668, b: 0.9433962, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6504,7 +6505,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clips:
   - {fileID: 8300000, guid: 632383ff2891f0e4aaddf5a9b13795ff, type: 3}
-  - {fileID: 8300000, guid: 30939228726ee704f98d5a8ecb84106b, type: 3}
+  - {fileID: 8300000, guid: 26fbf6bb6963666478f6992bc53b9145, type: 3}
+  - {fileID: 8300000, guid: 618be86712ffac947997f96463301683, type: 3}
   tenpariKeisu: 1
   faceCount: {fileID: 0}
   player: {fileID: 0}
@@ -8639,8 +8641,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -52, y: 0}
-  m_SizeDelta: {x: 1000, y: 950}
+  m_AnchoredPosition: {x: -134.3, y: 17.6}
+  m_SizeDelta: {x: 1164.6, y: 985.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2029094433
 MonoBehaviour:

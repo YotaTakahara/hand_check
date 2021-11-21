@@ -16,13 +16,13 @@ public class RegistrationCount : MonoBehaviour
     public float span=5.0f;
     public float checkStart=0;
     int setNum=0;
-    int score=0;
+    float score=0;
     // Start is called before the first frame update
     void Start()
     {
         GameObject conTmp=GameObject.Find("GameController");
         gameController=conTmp.GetComponent<GameController>();
-        score=gameController.score;
+        score=gameController.timeScore;
         GameObject handTmp=GameObject.Find("AnimatorVir");
         handRegistration=handTmp.GetComponent<HandRegistration>();
         
@@ -57,7 +57,7 @@ public class RegistrationCount : MonoBehaviour
         if(checkStart<=2){
         checkStart=handRegistration.checkStart;
         }
-        score=gameController.score;
+        score=gameController.timeScore;
         if(checkStart==1){
             float tmp=handRegistration.spanCount-handRegistration.tmpSpan;
             text.text="後"+tmp+"秒間です";

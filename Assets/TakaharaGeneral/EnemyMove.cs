@@ -79,6 +79,10 @@ public class EnemyMove : MonoBehaviour
     }
 
     public void TenpariChange(float k){
-        speed=speed*k;
+        
+        speed=speed*3;
+
+        
+        
     }
 }

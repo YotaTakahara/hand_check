@@ -34,6 +34,8 @@ public class EffectController : MonoBehaviour
             texts.Add(images[i].GetComponentInChildren<Text>());
             enemies.Add((GameObject)images[i].GetComponent<CubeBox>().target);
         }
+        SoundPlay();
+        PlayerColor();
         
     }
 

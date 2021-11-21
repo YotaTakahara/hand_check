@@ -20,7 +20,7 @@ public class PlayerMove : MonoBehaviour
 
     public float speed=0.1f;
     public Vector3 firstPosition;
-    public int life=5;
+    //public int life=5;
     void Start()
     {
         goal=GameObject.Find("Goal");
@@ -69,7 +69,7 @@ public class PlayerMove : MonoBehaviour
         // Debug.Log("ne.normalized:"+ne*speed*Time.deltaTime);
 
         // }
-        CheckLife();
+        //CheckLife();
         
         }
 
@@ -96,12 +96,13 @@ public class PlayerMove : MonoBehaviour
     
     }
     public void TenpariChange(float k){
-        speed=speed*k;
+        
+        speed=speed*3;
     }
     public void CheckLife(){
-        if(life <=0){
-            SceneManager.LoadScene("Fish");
+        // if(life <=0){
+        //     SceneManager.LoadScene("Fish");
 
-        }
+        // }
     }
 }

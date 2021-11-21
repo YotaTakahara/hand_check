@@ -436,21 +436,21 @@ public class HandRegistration : MonoBehaviour
 
 
     }
-     public void OnRenderObject()
-    {if(meshCheck==0){
-      var layer=gameObject.layer;
-      // Wireframe mesh rendering
-      _material.SetBuffer("_Vertices", _detector.VertexBuffer);
-      _material.SetPass(0);
-      Graphics.DrawMeshNow(_template, Matrix4x4.identity,layer);
-      //Debug.Log("_material:"+_material);
+     public void OnRenderObject(){
+    // {if(meshCheck==0){
+    //   var layer=gameObject.layer;
+    //   // Wireframe mesh rendering
+    //   _material.SetBuffer("_Vertices", _detector.VertexBuffer);
+    //   _material.SetPass(0);
+    //   Graphics.DrawMeshNow(_template, Matrix4x4.identity,layer);
+    //   //Debug.Log("_material:"+_material);
 
-      // Keypoint marking
-      _material.SetBuffer("_Vertices", _detector.VertexBuffer);
-      _material.SetPass(1);
-      //Debug.Log("_material" + _material);
-      Graphics.DrawProceduralNow(MeshTopology.Lines, 400, 1);
-    }
+    //   // Keypoint marking
+    //   _material.SetBuffer("_Vertices", _detector.VertexBuffer);
+    //   _material.SetPass(1);
+    //   //Debug.Log("_material" + _material);
+    //   Graphics.DrawProceduralNow(MeshTopology.Lines, 400, 1);
+    // }
     }
 
     #endregion

@@ -14,6 +14,7 @@ public class FaceCount : MonoBehaviour
     [SerializeField] private EnemyMove enemyMove;
     [SerializeField] private EffectController effectController;
     public int life=5;
+    public float timeScore=0;
     float sceneMove=0;
     void Start()
     {
