@@ -1540,8 +1540,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 40ab3a7e4e36423488e589303d63346f, type: 3}
-  - {fileID: 8300000, guid: 7784e7ab59ab376458c07be56b1a8d6f, type: 3}
+  - {fileID: 8300000, guid: 632383ff2891f0e4aaddf5a9b13795ff, type: 3}
+  - {fileID: 8300000, guid: 30939228726ee704f98d5a8ecb84106b, type: 3}
   tenpariKeisu: 1
   faceCount: {fileID: 0}
   player: {fileID: 0}
@@ -2917,7 +2917,6 @@ MonoBehaviour:
   tenpariKeisu: 0
   sceneState: 0
   score: 0
-  life: 0
 --- !u!4 &637822266
 Transform:
   m_ObjectHideFlags: 0
@@ -7514,6 +7513,7 @@ MonoBehaviour:
   - {fileID: 1713247350}
   - {fileID: 990308360}
   faceCount: {fileID: 0}
+  meshCheck: 0
   tmpGuu: 0
   tmpHitosashi: 0
   tmpHutasashi: 0
@@ -8286,6 +8286,7 @@ MonoBehaviour:
   playerMove: {fileID: 0}
   enemyMove: {fileID: 0}
   effectController: {fileID: 0}
+  life: 5
 --- !u!4 &2000647440
 Transform:
   m_ObjectHideFlags: 0
@@ -8767,6 +8768,7 @@ MonoBehaviour:
   goal: {fileID: 0}
   circleDistance: 0.3
   faceCount: {fileID: 0}
+  gameController: {fileID: 0}
   targetPosition: {x: 0, y: 0, z: 0}
   speed: 0.35
   firstPosition: {x: 0, y: 0, z: 0}

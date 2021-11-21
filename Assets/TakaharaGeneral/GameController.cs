@@ -26,9 +26,10 @@ public class GameController : MonoBehaviour
     [SerializeField] private FaceCount faceCount;
     [SerializeField] private float tenpariKeisu=1;
 
+    //public int playerHP=5;
     public int sceneState=0;
     public int score=0;
-    public int life=0;
+    int life=5;
 
 
     void Start(){
@@ -40,7 +41,7 @@ public class GameController : MonoBehaviour
         //eneList1=enemyList.eneList1;
         player=GameObject.Find("Player");
         playerMove=player.GetComponent<PlayerMove>();
-        life=playerMove.life;
+        //life=playerMove.life;
         GameObject tmpFace=GameObject.Find("FaceCount");
         faceCount=tmpFace.GetComponent<FaceCount>();
         tenpariKeisu=faceCount.tenpariKeisu;
@@ -55,7 +56,7 @@ public class GameController : MonoBehaviour
     }
     void Update(){
         tenpariKeisu=faceCount.tenpariKeisu;
-        life=playerMove.life;
+        //life=playerMove.life;
         text.text="score:"+score+"\n"+"テンパリ係数"+tenpariKeisu+"\n"+"life:"+life;
         
         if(check<5){
@@ -86,6 +87,8 @@ public class GameController : MonoBehaviour
 
     public void Initialize(){
         //score=PlayerPrefs.GetInt("Score",0);
+        life=faceCount.life;
+        playerMove.life=life;
         if(SceneManager.GetActiveScene().name == "TestAnimator"){
             sceneState=0;
             Instantiate(wallList[0],transform.position,Quaternion.identity);
@@ -105,11 +108,12 @@ public class GameController : MonoBehaviour
     }
     public void StateChange(){
         Debug.Log("状態が推移しましたのでお知らせします!!!!!!!!!!!!!!!!!!!");
+        faceCount.life=life;
         
         DontDestroyOnLoad(faceCount);
-        playerMove.RelocateToFirst();
-        DontDestroyOnLoad(player);
-        DontDestroyOnLoad(this);
+        //playerMove.RelocateToFirst();
+        //DontDestroyOnLoad(player);
+        //DontDestroyOnLoad(this);
         
          if(SceneManager.GetActiveScene().name == "TestAnimator"){
             //sceneState=0;
@@ -132,7 +136,8 @@ public class GameController : MonoBehaviour
     }
     public void MeetEnemy(Vector3 place){
         Instantiate(effect,place,Quaternion.identity);
-        playerMove.life-=1;
+        //playerMove.life-=1;
+        life-=1;
     }
 
     

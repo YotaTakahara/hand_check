@@ -8,6 +8,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private GameObject goal;
     [SerializeField] private float circleDistance=0.5f;
     [SerializeField] private FaceCount faceCount;
+    [SerializeField] private GameController gameController;
     //[SerializeField] private Text text;
 
 
@@ -25,6 +26,8 @@ public class PlayerMove : MonoBehaviour
         goal=GameObject.Find("Goal");
         GameObject faceTmp=GameObject.Find("FaceCount");
         faceCount=faceTmp.GetComponent<FaceCount>();
+        GameObject gameTmp=GameObject.Find("GameController");
+        gameController=gameTmp.GetComponent<GameController>();
         //Debug.Log("goal:"+goal.transform.position);
         targetPosition=this.transform.position;
         firstPosition=this.transform.position;
@@ -96,7 +99,7 @@ public class PlayerMove : MonoBehaviour
         speed=speed*k;
     }
     public void CheckLife(){
-        if(life<=0){
+        if(life <=0){
             SceneManager.LoadScene("Fish");
 
         }

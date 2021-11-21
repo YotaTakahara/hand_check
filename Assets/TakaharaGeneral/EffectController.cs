@@ -40,17 +40,21 @@ public class EffectController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for(int i=0;i<images.Count;i++){
-            float distance=Vector3.Magnitude(images[i].transform.position-player.transform.position);
-            if(distance<cautionDistacne){
-                images[i].color=Color.red;
-                texts[i].text="Caution";
-                texts[i].color=Color.red;
-                texts[i].fontSize=20;
-            }else{
-                images[i].color=Color.white;
-                texts[i].text="";
-            }
+        // for(int i=0;i<images.Count;i++){
+        //     float distance=Vector3.Magnitude(images[i].transform.position-player.transform.position);
+        //     if(distance<cautionDistacne){
+        //         images[i].color=Color.red;
+        //         texts[i].text="Caution";
+        //         texts[i].color=Color.red;
+        //         texts[i].fontSize=20;
+        //     }else{
+        //         images[i].color=Color.white;
+        //         texts[i].text="";
+        //     }
+        // }
+        if(tenpariKeisu==2){
+            EnemyCaution();
+
         }
         //tenpariKeisu=faceCount.tenpariKeisu;
         // if(tmpCheck!=tenpariKeisu){

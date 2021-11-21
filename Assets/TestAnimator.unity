@@ -136,11 +136,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7143419750085519550, guid: 279367673fa6c794cb61b0d23eac8e77, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -20.5
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 7143419750085519550, guid: 279367673fa6c794cb61b0d23eac8e77, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7145288221261382052, guid: 279367673fa6c794cb61b0d23eac8e77, type: 3}
       propertyPath: m_Name
@@ -164,7 +164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7150733202489931162, guid: 279367673fa6c794cb61b0d23eac8e77, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.83
+      value: -0.325
       objectReference: {fileID: 0}
     - target: {fileID: 7150733202489931162, guid: 279367673fa6c794cb61b0d23eac8e77, type: 3}
       propertyPath: m_LocalPosition.z
@@ -537,7 +537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: b701c416ffd5db94eab6dbfe25b8247e, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -1014,7 +1014,7 @@ MonoBehaviour:
   tenpariKeisu: 0
   sceneState: 0
   score: 0
-  life: 0
+  life: 5
 --- !u!4 &152957072
 Transform:
   m_ObjectHideFlags: 0
@@ -2027,6 +2027,7 @@ MonoBehaviour:
   - {fileID: 222308916}
   - {fileID: 1838119904}
   faceCount: {fileID: 0}
+  meshCheck: 0
   tmpGuu: 0
   tmpHitosashi: 0
   tmpHutasashi: 0
@@ -2365,7 +2366,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7150733202489931162, guid: 279367673fa6c794cb61b0d23eac8e77, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.694
+      value: 0.124
       objectReference: {fileID: 0}
     - target: {fileID: 7150733202489931162, guid: 279367673fa6c794cb61b0d23eac8e77, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3881,11 +3882,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7150733202489931162, guid: 279367673fa6c794cb61b0d23eac8e77, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.51
+      value: -0.374
       objectReference: {fileID: 0}
     - target: {fileID: 7150733202489931162, guid: 279367673fa6c794cb61b0d23eac8e77, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.75
+      value: -0.136
       objectReference: {fileID: 0}
     - target: {fileID: 7150733202489931162, guid: 279367673fa6c794cb61b0d23eac8e77, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4286,10 +4287,10 @@ MonoBehaviour:
   goal: {fileID: 0}
   circleDistance: 0.3
   faceCount: {fileID: 0}
+  gameController: {fileID: 0}
   targetPosition: {x: 0, y: 0, z: 0}
   speed: 0.35
   firstPosition: {x: 0, y: 0, z: 0}
-  life: 5
 --- !u!135 &920114525
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -6503,7 +6504,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clips:
   - {fileID: 8300000, guid: 632383ff2891f0e4aaddf5a9b13795ff, type: 3}
-  - {fileID: 8300000, guid: 5a8d4068e0dc6db48994a41f1e83ec41, type: 3}
+  - {fileID: 8300000, guid: 30939228726ee704f98d5a8ecb84106b, type: 3}
   tenpariKeisu: 1
   faceCount: {fileID: 0}
   player: {fileID: 0}

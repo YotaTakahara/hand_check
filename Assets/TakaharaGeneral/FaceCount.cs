@@ -13,6 +13,7 @@ public class FaceCount : MonoBehaviour
     [SerializeField] private PlayerMove playerMove;
     [SerializeField] private EnemyMove enemyMove;
     [SerializeField] private EffectController effectController;
+    public int life=5;
     float sceneMove=0;
     void Start()
     {
@@ -36,7 +37,7 @@ public class FaceCount : MonoBehaviour
 
     }
     if(0.5<tenpariTmp){
-        tmpScore+=1;
+        tmpScore1+=1;
     }
     if(tenpariTmp<=0.3){
         tmpScore-=1;
