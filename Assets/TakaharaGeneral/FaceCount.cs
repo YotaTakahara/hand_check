@@ -25,6 +25,7 @@ public class FaceCount : MonoBehaviour
         // GameObject playerTmp=GameObject.Find("Player");
         // playerMove=playerTmp.GetComponent<PlayerMove>();
         // GameObject enemyMove=GameObject.Find("")
+        gameController.timeScore=timeScore;
         
         sceneMove=tenpariKeisu;
         

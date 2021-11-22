@@ -58,7 +58,7 @@ public class GameController : MonoBehaviour
 
     }
     void Update(){
-        //Debug.Log("faceCount:"+faceCount.tenpariKeisu);
+        Debug.Log("faceCount:"+faceCount.tenpariKeisu);
         tenpariKeisu=faceCount.tenpariKeisu;
         timeScore+=Time.deltaTime;
         //life=playerMove.life;

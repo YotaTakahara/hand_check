@@ -9,8 +9,10 @@ public class RegistrationCount : MonoBehaviour
 {
     [SerializeField] private HandRegistration handRegistration;
     [SerializeField] private GameController gameController;
+    [SerializeField] private FaceCount faceCount;
     [SerializeField] private Text text;
-    [SerializeField] private Image image;
+    [SerializeField] private Text text1;
+    [SerializeField] private GameObject image;
 
     public Vector3[] handCheck=new Vector3[21];
     public float span=5.0f;
@@ -22,9 +24,12 @@ public class RegistrationCount : MonoBehaviour
     {
         GameObject conTmp=GameObject.Find("GameController");
         gameController=conTmp.GetComponent<GameController>();
-        score=gameController.timeScore;
+        
         GameObject handTmp=GameObject.Find("AnimatorVir");
         handRegistration=handTmp.GetComponent<HandRegistration>();
+        GameObject faceTmp=GameObject.Find("FaceCount");
+        faceCount=faceTmp.GetComponent<FaceCount>();
+        score=faceCount.timeScore;
         
 
         for(int i=0;i<handCheck.Length;i++){
@@ -45,7 +50,10 @@ public class RegistrationCount : MonoBehaviour
         }
         
         setNum+=1;
-        text.text="ボタンを押してユーザ登録を開始してください";
+        text.text="枠内に手を収めてユーザ登録を開始してください";
+        Printf();
+
+
 
         
     }
@@ -56,7 +64,7 @@ public class RegistrationCount : MonoBehaviour
         if(checkStart<=2){
         checkStart=handRegistration.checkStart;
         }
-        score=gameController.timeScore;
+        //score=gameController.timeScore;
         if(checkStart==1){
             float tmp=handRegistration.spanCount-handRegistration.tmpSpan;
             text.text="後"+tmp+"秒間です";
@@ -71,6 +79,12 @@ public class RegistrationCount : MonoBehaviour
 
 
         
+    }
+    public void Printf(){
+        text1.text="Timescore"+score;
+        text1.fontSize=64;
+
+
     }
     public void average(int frameCount){
        for(int i=0;i<handCheck.Length;i++){
@@ -105,13 +119,22 @@ public class RegistrationCount : MonoBehaviour
 
     }
     public void PrintScore(){
+        image.SetActive(false);
+        text.text="今までの登録内容\n";
+        text.fontSize=16;
         Debug.Log("setNum:"+setNum);
         for(int i=0;i<=setNum;i++){
-            text.text+="ID:"+PlayerPrefs.GetInt($"ID:{setNum}",1111)+"score:"+PlayerPrefs.GetFloat($"SCORE{setNum}",0f)+"\n";
+            text.text+="ID:"+PlayerPrefs.GetInt($"ID:{i}",1111)+":score:"+PlayerPrefs.GetFloat($"SCORE{i}",0f)+"\n";
             for(int j=0;j<handCheck.Length;j++){
-                
+                if(i==setNum){
+                    text.text+=$"handCheck{i}[{j}]"+PlayerPrefs.GetString($"handCheck{i}[{j}]","");
+
+                }
+               // text.text+=$"handCheck{i}[{j}]"+PlayerPrefs.GetString($"handCheck{i}[{j}]","");
+            
 
             }
+            text.text+="\n";
         }
 
     }

@@ -1010,7 +1010,7 @@ MonoBehaviour:
   playerMove: {fileID: 0}
   block: {fileID: 4692616725361406936, guid: cd76338108250c54ea7ebde9b4eb49d8, type: 3}
   cir: {fileID: 1938972323817018252, guid: 4f1abd8e4905c4542b3afa68fb5294a3, type: 3}
-  faceCount: {fileID: 0}
+  faceCount: {fileID: 722811758}
   tenpariKeisu: 0
   sceneState: 0
   timeScore: 0
