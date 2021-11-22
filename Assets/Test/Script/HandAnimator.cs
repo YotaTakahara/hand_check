@@ -186,11 +186,11 @@ public class HandAnimator : MonoBehaviour
     public int tmpHutasashi=0;
     public int PoseHutasashi(Vector3 place){
        
-        Debug.Log("小指判定:"+tmpHutasashi);
+        //Debug.Log("小指判定:"+tmpHutasashi);
         if(5<=tmpHutasashi&&span<howcheck){
             gameController.NextPosition(place);
             howcheck=0;
-            Debug.Log("小指!!!!!!!!!!!!!!!!!!!!");
+            //Debug.Log("小指!!!!!!!!!!!!!!!!!!!!");
             tmpHutasashi=0;
             return 1;
         }else{
@@ -267,7 +267,7 @@ public class HandAnimator : MonoBehaviour
                       checkCountHutasashi+=1;
                   }
               }
-              Debug.Log("checkCountHutasashi:"+checkCountHutasashi);
+             // Debug.Log("checkCountHutasashi:"+checkCountHutasashi);
               if(16<=checkCountHutasashi){
                 this.tmpHutasashi+=1;
              //   Debug.Log("2刺し");

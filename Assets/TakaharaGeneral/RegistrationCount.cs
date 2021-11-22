@@ -30,7 +30,7 @@ public class RegistrationCount : MonoBehaviour
         for(int i=0;i<handCheck.Length;i++){
             handCheck[i]=Vector3.zero;
         }
-        setNum=PlayerPrefs.GetInt("numberID",1111111);
+        setNum=PlayerPrefs.GetInt("numberID",-1);
         Debug.Log("setNUm:"+setNum);
         int tmp=PlayerPrefs.GetInt($"ID:{setNum}",1111);
         float tmpScore=PlayerPrefs.GetFloat($"SCORE{setNum}",0f);
@@ -43,9 +43,8 @@ public class RegistrationCount : MonoBehaviour
             Debug.Log($"shin:{i}{shin}");
 
         }
-        if(setNum!=0){
-            setNum+=1;
-        }
+        
+        setNum+=1;
         text.text="ボタンを押してユーザ登録を開始してください";
 
         

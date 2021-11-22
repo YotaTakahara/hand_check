@@ -33,6 +33,7 @@ public class GameController : MonoBehaviour
 
 
     void Start(){
+        Debug.Log("jgjhfjghfjhgjfhgjjfgjfjgf");
         GameObject ani=GameObject.Find("AnimatorVir");
         handAnimator=ani.GetComponent<HandAnimator>();
         GameObject ene=GameObject.Find("EnemyList");
@@ -44,6 +45,7 @@ public class GameController : MonoBehaviour
         //life=playerMove.life;
         GameObject tmpFace=GameObject.Find("FaceCount");
         faceCount=tmpFace.GetComponent<FaceCount>();
+        Debug.Log("faceCount:"+faceCount);
         tenpariKeisu=faceCount.tenpariKeisu;
         TenpariChange(tenpariKeisu);
         Initialize();
@@ -56,6 +58,7 @@ public class GameController : MonoBehaviour
 
     }
     void Update(){
+        //Debug.Log("faceCount:"+faceCount.tenpariKeisu);
         tenpariKeisu=faceCount.tenpariKeisu;
         timeScore+=Time.deltaTime;
         //life=playerMove.life;
@@ -123,7 +126,8 @@ public class GameController : MonoBehaviour
          if(SceneManager.GetActiveScene().name == "TestAnimator"){
             //sceneState=0;
             //Instantiate(wallList[0],transform.position,Quaternion.identity);
-            SceneManager.LoadScene("Tmp");
+            //SceneManager.LoadScene("Tmp");
+            SceneManager.LoadScene("UserRegistration");
 
         }
         else if(SceneManager.GetActiveScene().name == "Tmp"){

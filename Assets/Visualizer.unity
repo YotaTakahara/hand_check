@@ -592,7 +592,7 @@ MonoBehaviour:
   _deviceName: 
   _resolution: {x: 1080, y: 1080}
   _frameRate: 60
-  _dummyImage: {fileID: 2800000, guid: d5e2e1d25d61646b3916f65415ee1e09, type: 3}
+  _dummyImage: {fileID: 2800000, guid: fd69c2133c75849fbb8369768d23ffff, type: 3}
 --- !u!1 &540982894
 GameObject:
   m_ObjectHideFlags: 0
